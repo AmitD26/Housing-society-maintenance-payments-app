@@ -3,12 +3,17 @@
     <string name="username">Enter username</string>
     <string name="password">Enter password</string>
     <string name="login">Log in</string>
-    <string name="login_server">http://192.168.0.100/DhareshwarPHP/login.php</string>
+    <string name="login_PHP">http://192.168.0.100/DhareshwarPHP/login.php</string>
+    <string name="password_change_PHP">http://192.168.0.100/DhareshwarPHP/password_change.php</string>
     <string name="password_change">Change Password</string>
     <string name="password_change_dialog">For security reasons, please change your password.</string>
     <string name="enter_new_password">Enter new password:</string>
     <string name="confirm_new_password">Confirm new password:</string>
     <string name="confirm">Confirm</string>
     <string name="remind_me_later">Remind me later"</string>
+    <string name="passwords_did_not_match">Passwords did not match. Please try again.</string>
+    <string name="password_length_inadequate">Password must be at least 8 characters long.</string>
+    <string name="ok">Okay</string>
+    <string name="enter_correct_login_info">Invalid. Please enter correct login info.</string>
 
 </resources>
