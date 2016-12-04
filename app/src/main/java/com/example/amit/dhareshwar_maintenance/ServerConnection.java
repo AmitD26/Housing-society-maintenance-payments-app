@@ -5,6 +5,10 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -55,6 +59,12 @@ public class ServerConnection extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String s) {
         Toast.makeText(context, s , Toast.LENGTH_SHORT).show();
+        try {
+            JSONArray ja = new JSONArray(s);
+            Log.e("JSONArray",ja.get(1).toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 }

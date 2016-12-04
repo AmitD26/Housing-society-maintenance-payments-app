@@ -3,5 +3,5 @@
     <string name="username">Enter username</string>
     <string name="password">Enter password</string>
     <string name="login">Log in</string>
-    <string name="login_server">http://192.168.0.101/DhareshwarPHP/login.php</string>
+    <string name="login_server">http://192.168.0.100/DhareshwarPHP/login.php</string>
 </resources>
