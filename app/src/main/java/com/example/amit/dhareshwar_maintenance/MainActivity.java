@@ -19,7 +19,7 @@ import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String SHARED_PREFS = "stored_login_information";
+    public static final String LOGIN_INFO_SHARED_PREFS = "stored_login_information";
 
     EditText username, password;
     Button login;
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             String response = new LoginToServer(this).execute(usernameString,passwordString).get();
             JSONObject serverResponse = new JSONObject(response);
             if (serverResponse.getBoolean("success")) {
-                SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.SHARED_PREFS, MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS, MODE_PRIVATE);
                 SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
                 sharedPreferencesEditor.putString("username", usernameString);
                 sharedPreferencesEditor.putString("password", passwordString);
