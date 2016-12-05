@@ -1,6 +1,7 @@
 package com.example.amit.dhareshwar_maintenance;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -76,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
                                             JSONObject serverResponse = new ChangePassword().execute(usernameString, newPasswordString, getResources().getString(R.string.password_change_PHP)).get();
                                             if (serverResponse.getBoolean("success")) {
                                                 dialogInterface.dismiss();
+                                                Intent intent = new Intent(MainActivity.this,UserProfileActivity.class);
+                                                startActivity(intent);
                                                 Toast.makeText(MainActivity.this, "Password changed successfully", Toast.LENGTH_LONG).show();
                                             }
                                         } catch (InterruptedException | ExecutionException | JSONException e) {

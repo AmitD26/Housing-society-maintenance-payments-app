@@ -55,7 +55,6 @@ public class LoginToServer extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPostExecute(String s) {
-//        Toast.makeText(context, s , Toast.LENGTH_SHORT).show();
 
     }
 }
