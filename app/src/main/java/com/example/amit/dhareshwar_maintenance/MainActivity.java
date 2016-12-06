@@ -123,33 +123,4 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
-//        newPasswordDialogBuilder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                EditText newPassword = (EditText) alertDialogView.findViewById(R.id.newPassword);
-//                EditText confirmNewPassword = (EditText) alertDialogView.findViewById(R.id.confirmNewPassword);
-//                TextView passwordsDoNotMatch = (TextView) alertDialogView.findViewById(R.id.passwordsDoNotMatch);
-//
-//                String newPasswordString = newPassword.getText().toString();
-//                String confirmNewPasswordString = confirmNewPassword.getText().toString();
-//                if(newPasswordString.equals(confirmNewPasswordString)) {
-////                    JSONObject serverResponse = new ChangePassword().execute(username,password).get();
-//                }
-//                else {
-////                    passwordsDoNotMatch.setVisibility(TextView.VISIBLE);
-////                    final AlertDialog.Builder passwdInstructionsDialog = new AlertDialog.Builder(MainActivity.this);
-////                    passwdInstructionsDialog.setTitle(R.string.passwords_did_not_match);
-////                    passwdInstructionsDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-////                        @Override
-////                        public void onClick(DialogInterface dialogInterface, int i) {
-//////                            dialogInterface.dismiss();
-////
-////                            newPasswordDialogBuilder.show();
-////
-////                        }
-////                    });
-////                    passwdInstructionsDialog.show();
-//                }
-//            }
-//        });
 

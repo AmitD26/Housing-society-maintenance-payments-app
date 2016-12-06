@@ -43,13 +43,6 @@ public class UserProfileActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //--------------------------------------------------------------------------------------------------
-        TextView helloUserTextView = (TextView) findViewById(R.id.helloUserTextView);
-        String username = getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS,MODE_PRIVATE).getString("username",null);
-        if (username != null) {
-            helloUserTextView.setText(getResources().getString(R.string.hello_user).concat(" ").concat(username));
-        }
-        //--------------------------------------------------------------------------------------------------
     }
 
     @Override
