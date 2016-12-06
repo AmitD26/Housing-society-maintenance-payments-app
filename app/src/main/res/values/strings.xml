@@ -17,6 +17,7 @@
     <string name="enter_correct_login_info">Invalid. Please enter correct login info.</string>
     <string name="title_activity_user_profile">UserProfileActivity</string>
     <string name="password_length_hint">At least 8 characters.</string>
+    <string name="password_changed_successfully">Password changed successfully.</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
