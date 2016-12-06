@@ -26,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String existing_user = getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS,MODE_PRIVATE).getString("username",null);
+        if(existing_user != null) {
+            startActivity(new Intent(this,UserProfileActivity.class));
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -47,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
                 sharedPreferencesEditor.putString("password", passwordString);
                 sharedPreferencesEditor.apply();
 
+                if( ! usernameString.equals(passwordString)) {
+                    startActivity(new Intent(this,UserProfileActivity.class));
+                    return;
+                }
 
                 final AlertDialog.Builder newPasswordDialogBuilder = new AlertDialog.Builder(this);
                 newPasswordDialogBuilder.setTitle(R.string.password_change_dialog);
