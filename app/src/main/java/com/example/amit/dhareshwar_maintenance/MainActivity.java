@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 sharedPreferencesEditor.apply();
 
                 if( ! usernameString.equals(passwordString)) {
+                    startActivity(new Intent(this,UserProfileActivity.class));
                     return;
                 }
 
