@@ -107,4 +107,9 @@
         <item>Notices</item>
     </string-array>
 
+    <string-array name="notice_fields">
+        <item>Notice ID:</item>
+        <item>Sent by:</item>
+    </string-array>
+
 </resources>

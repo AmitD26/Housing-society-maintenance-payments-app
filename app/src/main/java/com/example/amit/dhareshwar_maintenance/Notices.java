@@ -81,8 +81,12 @@ public class Notices extends Fragment {
             JSONObject receivedNotices = new GetNoticesFromServer(getActivity()).execute().get();
             Iterator<?> keys = receivedNotices.keys();
             while (keys.hasNext()) {
-                JSONObject notice = (JSONObject) receivedNotices.get((String)keys.next());
-                displayNoticeTextView = new TextView(getActivity());
+                String noticeID = (String)keys.next();
+                JSONObject notice = (JSONObject) receivedNotices.get(noticeID);
+                String[] notice_fields = getResources().getStringArray(R.array.notice_fields);
+                displayNoticeTextView = new TextView(getContext());
+                displayNoticeTextView.setText(notice_fields[0] + noticeID + "\n" + notice.get("notice_date") + "\n" + notice.get("notice_subject") + "\n" + notice.get("main_body") + notice_fields[1] + notice.get("sender_privilege_level") + "\n\n\n");
+                notices_linear_layout.addView(displayNoticeTextView, 0);
             }
         } catch (InterruptedException | ExecutionException | JSONException e) {
             e.printStackTrace();
