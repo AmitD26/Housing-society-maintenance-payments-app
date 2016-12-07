@@ -7,6 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Iterator;
+import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -64,7 +72,22 @@ public class Notices extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notices, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_notices, container, false);
+
+        LinearLayout notices_linear_layout = (LinearLayout) rootView.findViewById(R.id.notices_linear_layout);
+        TextView displayNoticeTextView;
+
+        try {
+            JSONObject receivedNotices = new GetNoticesFromServer(getActivity()).execute().get();
+            Iterator<?> keys = receivedNotices.keys();
+            while (keys.hasNext()) {
+                JSONObject notice = (JSONObject) receivedNotices.get((String)keys.next());
+                displayNoticeTextView = new TextView(getActivity());
+            }
+        } catch (InterruptedException | ExecutionException | JSONException e) {
+            e.printStackTrace();
+        }
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

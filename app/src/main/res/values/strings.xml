@@ -5,6 +5,7 @@
     <string name="login">Log in</string>
     <string name="login_PHP">http://192.168.0.100/DhareshwarPHP/login.php</string>
     <string name="password_change_PHP">http://192.168.0.100/DhareshwarPHP/password_change.php</string>
+    <string name="notices_PHP">http://192.168.0.100/DhareshwarPHP/notices.php</string>
     <string name="password_change">Change Password</string>
     <string name="password_change_dialog">For security reasons, please change your password.</string>
     <string name="enter_new_password">Enter new password:</string>
