@@ -1,6 +1,7 @@
 package com.example.amit.dhareshwar_maintenance;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -85,7 +86,7 @@ public class Notices extends Fragment {
                 JSONObject notice = (JSONObject) receivedNotices.get(noticeID);
                 String[] notice_fields = getResources().getStringArray(R.array.notice_fields);
                 displayNoticeTextView = new TextView(getContext());
-                displayNoticeTextView.setText(notice_fields[0] + noticeID + "\n" + notice.get("notice_date") + "\n" + notice.get("notice_subject") + "\n" + notice.get("main_body") + notice_fields[1] + notice.get("sender_privilege_level") + "\n\n\n");
+                displayNoticeTextView.setText(notice_fields[0] + noticeID + "\n" + notice.get("notice_date") + "\n" + notice.get("notice_subject") + "\n" + notice.get("main_body") + "\n" + notice_fields[1] + notice.get("sender_privilege_level") + "\n\n\n");
                 notices_linear_layout.addView(displayNoticeTextView, 0);
             }
         } catch (InterruptedException | ExecutionException | JSONException e) {
