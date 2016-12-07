@@ -25,6 +25,7 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
+        android:text="Hello world"
         android:layout_width="297dp"
         android:layout_height="25dp"
         android:id="@+id/notice_date_textView"

@@ -81,13 +81,21 @@ public class Notices extends Fragment {
         try {
             JSONObject receivedNotices = new GetNoticesFromServer(getActivity()).execute().get();
             Iterator<?> keys = receivedNotices.keys();
+            int notice_fragment_container_linearLayout_id_incrementer = 1;
             while (keys.hasNext()) {
                 String noticeID = (String)keys.next();
                 JSONObject notice = (JSONObject) receivedNotices.get(noticeID);
                 String[] notice_fields = getResources().getStringArray(R.array.notice_fields);
-                displayNoticeTextView = new TextView(getContext());
-                displayNoticeTextView.setText(notice_fields[0] + noticeID + "\n" + notice.get("notice_date") + "\n" + notice.get("notice_subject") + "\n" + notice.get("main_body") + "\n" + notice_fields[1] + notice.get("sender_privilege_level") + "\n\n\n");
-                notices_linear_layout.addView(displayNoticeTextView, 0);
+
+                LinearLayout fragment_container = new LinearLayout(getContext());
+                int notice_fragment_container_linearLayout_id = notice_fragment_container_linearLayout_id_incrementer++;
+                fragment_container.setOrientation(LinearLayout.HORIZONTAL);
+                fragment_container.setId(notice_fragment_container_linearLayout_id);
+                getFragmentManager().beginTransaction().add(fragment_container.getId(),NoticeFragment.newInstance(null,null),noticeID.toString()).commit();
+                notices_linear_layout.addView(fragment_container);
+//                displayNoticeTextView = new TextView(getContext());
+//                displayNoticeTextView.setText(notice_fields[0] + noticeID + "\n" + notice.get("notice_date") + "\n" + notice.get("notice_subject") + "\n" + notice.get("main_body") + "\n" + notice_fields[1] + notice.get("sender_privilege_level") + "\n\n\n");
+//                notices_linear_layout.addView(displayNoticeTextView, 0);
             }
         } catch (InterruptedException | ExecutionException | JSONException e) {
             e.printStackTrace();
