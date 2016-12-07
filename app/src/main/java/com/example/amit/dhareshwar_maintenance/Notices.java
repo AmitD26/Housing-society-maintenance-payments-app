@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 /**
@@ -54,6 +56,7 @@ public class Notices extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -64,7 +67,15 @@ public class Notices extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notices, container, false);
+
+        View rootView = inflater.inflate(R.layout.fragment_notices, container, false);
+        LinearLayout notices_linear_layout = (LinearLayout) rootView.findViewById(R.id.notices_linear_layout);
+        TextView tv = new TextView(getContext());
+        tv.setText("Hello world");
+        notices_linear_layout.addView(tv);
+
+//        tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -77,6 +88,8 @@ public class Notices extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
+
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
