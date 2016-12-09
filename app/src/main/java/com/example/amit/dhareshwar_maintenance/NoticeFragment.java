@@ -79,26 +79,26 @@ public class NoticeFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_notice, container, false);
 
-        TextView noticeID_textView = (TextView) rootView.findViewById(R.id.noticeID_textView);
-        noticeID_textView.setText(noticeID);
-        TextView noticeDate_textView = (TextView) rootView.findViewById(R.id.notice_date_textView);
-        try {
-            noticeDate_textView.setText(noticeDetails.getString("notice_date"));
-            TextView noticeSubject_textView = (TextView) rootView.findViewById(R.id.notice_subject_textView);
-            noticeSubject_textView.setText(noticeDetails.getString("notice_subject"));
-            TextView noticeSender_textView = (TextView) rootView.findViewById(R.id.notice_sender_textView);
-            noticeSender_textView.setText(noticeDetails.getString("sender_flat_no") + "  " + noticeDetails.getString("sender_privilege_level"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        Button showNoticeDetails = (Button) rootView.findViewById(R.id.view_notice_details_button);
-        showNoticeDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+//        TextView noticeID_textView = (TextView) rootView.findViewById(R.id.noticeID_textView);
+//        noticeID_textView.setText(noticeID);
+//        TextView noticeDate_textView = (TextView) rootView.findViewById(R.id.notice_date_textView);
+//        try {
+//            noticeDate_textView.setText(noticeDetails.getString("notice_date"));
+//            TextView noticeSubject_textView = (TextView) rootView.findViewById(R.id.notice_subject_textView);
+//            noticeSubject_textView.setText(noticeDetails.getString("notice_subject"));
+//            TextView noticeSender_textView = (TextView) rootView.findViewById(R.id.notice_sender_textView);
+//            noticeSender_textView.setText(noticeDetails.getString("sender_flat_no") + "  " + noticeDetails.getString("sender_privilege_level"));
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//        Button showNoticeDetails = (Button) rootView.findViewById(R.id.view_notice_details_button);
+//        showNoticeDetails.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
 
         return rootView;
     }
