@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Date;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,12 +22,19 @@ import android.view.ViewGroup;
 public class NoticeFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String NOTICE_ID = "notice_id";
+    private static final String NOTICE_DATE = "notice_date";
+    private static final String NOTICE_SUBJECT = "notice_subject";
+    private static final String NOTICE_MAIN_BODY = "notice_main_body";
+    private static final String NOTICE_SENDER = "notice_sender";
+
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String noticeID;
+    private String noticeDate;
+    private String noticeSubject;
+    private String noticeMainBody;
+    private String noticeSender;
 
     private OnFragmentInteractionListener mListener;
 
@@ -42,11 +51,14 @@ public class NoticeFragment extends Fragment {
      * @return A new instance of fragment NoticeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NoticeFragment newInstance(String param1, String param2) {
+    public static NoticeFragment newInstance(String noticeID, Date noticeDate, String noticeSubject, String noticeMainBody, String noticeSender) {
         NoticeFragment fragment = new NoticeFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(NOTICE_ID, noticeID);
+        args.putString(NOTICE_DATE, noticeDate.toString());
+        args.putString(NOTICE_SUBJECT, noticeSubject);
+        args.putString(NOTICE_MAIN_BODY, noticeMainBody);
+        args.putString(NOTICE_SENDER, noticeSender);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,7 +67,7 @@ public class NoticeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            noticeID = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
