@@ -87,7 +87,16 @@ public class Notices extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         rv.setLayoutManager(llm);
 
-        RVAdapter rva = new RVAdapter();
+        JSONObject receivedNotices = null;
+        try {
+            receivedNotices = new GetNoticesFromServer(getActivity()).execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        RVAdapter rva = new RVAdapter(receivedNotices);
         rv.setAdapter(rva);
 
 //        LinearLayout notices_linear_layout = (LinearLayout) rootView.findViewById(R.id.notices_linear_layout);
