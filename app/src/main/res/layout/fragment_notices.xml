@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.amit.dhareshwar_maintenance.Notices" >
+    tools:context="com.example.amit.dhareshwar_maintenance.Notices">
 
 
 
@@ -23,9 +23,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        >
 
         <RelativeLayout
+            android:id="@+id/noticeRL"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="16dp"
