@@ -7,6 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Date;
 
@@ -23,18 +29,11 @@ public class NoticeFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String NOTICE_ID = "notice_id";
-    private static final String NOTICE_DATE = "notice_date";
-    private static final String NOTICE_SUBJECT = "notice_subject";
-    private static final String NOTICE_MAIN_BODY = "notice_main_body";
-    private static final String NOTICE_SENDER = "notice_sender";
-
+    private static final String NOTICE_DETAILS = "notice_details";
 
     // TODO: Rename and change types of parameters
     private String noticeID;
-    private String noticeDate;
-    private String noticeSubject;
-    private String noticeMainBody;
-    private String noticeSender;
+    private JSONObject noticeDetails;
 
     private OnFragmentInteractionListener mListener;
 
@@ -51,14 +50,12 @@ public class NoticeFragment extends Fragment {
      * @return A new instance of fragment NoticeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NoticeFragment newInstance(String noticeID, Date noticeDate, String noticeSubject, String noticeMainBody, String noticeSender) {
+    public static NoticeFragment newInstance(String noticeID, JSONObject noticeDetails) {
         NoticeFragment fragment = new NoticeFragment();
         Bundle args = new Bundle();
         args.putString(NOTICE_ID, noticeID);
-        args.putString(NOTICE_DATE, noticeDate.toString());
-        args.putString(NOTICE_SUBJECT, noticeSubject);
-        args.putString(NOTICE_MAIN_BODY, noticeMainBody);
-        args.putString(NOTICE_SENDER, noticeSender);
+        args.putString(NOTICE_DETAILS, noticeDetails.toString());
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -67,8 +64,12 @@ public class NoticeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            noticeID = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            noticeID = getArguments().getString(NOTICE_ID);
+            try {
+                noticeDetails = new JSONObject(getArguments().getString(NOTICE_DETAILS));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -76,7 +77,30 @@ public class NoticeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notice, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_notice, container, false);
+
+        TextView noticeID_textView = (TextView) rootView.findViewById(R.id.noticeID_textView);
+        noticeID_textView.setText(noticeID);
+        TextView noticeDate_textView = (TextView) rootView.findViewById(R.id.notice_date_textView);
+        try {
+            noticeDate_textView.setText(noticeDetails.getString("notice_date"));
+            TextView noticeSubject_textView = (TextView) rootView.findViewById(R.id.notice_subject_textView);
+            noticeSubject_textView.setText(noticeDetails.getString("notice_subject"));
+            TextView noticeSender_textView = (TextView) rootView.findViewById(R.id.notice_sender_textView);
+            noticeSender_textView.setText(noticeDetails.getString("sender_flat_no") + "  " + noticeDetails.getString("sender_privilege_level"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Button showNoticeDetails = (Button) rootView.findViewById(R.id.view_notice_details_button);
+        showNoticeDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
