@@ -6,7 +6,7 @@
     tools:context="com.example.amit.dhareshwar_maintenance.NoticeFragment">
 
     <android.support.v7.widget.CardView
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
