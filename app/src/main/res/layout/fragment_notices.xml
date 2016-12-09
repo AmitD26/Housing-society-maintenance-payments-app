@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.amit.dhareshwar_maintenance.Notices"
-    android:divider="?showDividers">
+    tools:context="com.example.amit.dhareshwar_maintenance.Notices" >
 
 
 
@@ -29,7 +28,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp" >
+            android:padding="16dp"
+            android:divider="?android:dividerHorizontal"
+            android:showDividers="middle" >
 
             <TextView
                 android:id="@+id/card"
@@ -49,6 +50,13 @@
                 android:layout_height="wrap_content"
                 android:text="Hello world"
                 android:layout_below="@id/card1"/>
+
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_below="@id/card2" />
 
 
         </RelativeLayout>
