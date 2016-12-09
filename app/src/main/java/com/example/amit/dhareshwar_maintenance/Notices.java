@@ -85,7 +85,7 @@ public class Notices extends Fragment {
             while (keys.hasNext()) {
                 String noticeID = (String)keys.next();
                 JSONObject notice = (JSONObject) receivedNotices.get(noticeID);
-//                String[] notice_fields = getResources().getStringArray(R.array.notice_fields);
+                String[] notice_fields = getResources().getStringArray(R.array.notice_fields);
 
                 LinearLayout fragment_container = new LinearLayout(getContext());
                 int notice_fragment_container_linearLayout_id = notice_fragment_container_linearLayout_id_incrementer++;
