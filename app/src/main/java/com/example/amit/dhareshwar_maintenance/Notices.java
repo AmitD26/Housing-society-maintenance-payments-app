@@ -5,10 +5,13 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -38,7 +41,10 @@ public class Notices extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mRecyclerViewAdapter;
+    private RecyclerView.LayoutManager mRecyclerViewLayoutManager;
+
 
     public Notices() {
         // Required empty public constructor
@@ -75,7 +81,14 @@ public class Notices extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_notices, container, false);
+        View rootView = inflater.inflate(R.layout.notices_main_frag, container, false);
+
+        RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        rv.setLayoutManager(llm);
+
+        RVAdapter rva = new RVAdapter();
+        rv.setAdapter(rva);
 
 //        LinearLayout notices_linear_layout = (LinearLayout) rootView.findViewById(R.id.notices_linear_layout);
 //        TextView displayNoticeTextView;
@@ -102,6 +115,13 @@ public class Notices extends Fragment {
 //        } catch (InterruptedException | ExecutionException | JSONException e) {
 //            e.printStackTrace();
 //        }
+
+//        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+//        mRecyclerViewLayoutManager = new LinearLayoutManager(getContext());
+//        mRecyclerView.setLayoutManager(mRecyclerViewLayoutManager);
+//        mRecyclerViewAdapter = new
+
+
         return rootView;
     }
 
