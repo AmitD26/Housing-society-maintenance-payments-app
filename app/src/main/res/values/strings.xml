@@ -101,8 +101,8 @@
     <!-- TODO: Remove or change this placeholder text -->
 
     <string-array name="user_profile_activity_tabs_headers">
-        <item>My Dashboard</item>
-        <item>My Payments</item>
+        <item>Dashboard</item>
+        <item>Payments</item>
         <item>Notices</item>
     </string-array>
 
@@ -113,5 +113,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="notice_details">See details</string>
 
 </resources>
