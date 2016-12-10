@@ -22,7 +22,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 public class UserProfileActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, UserDashboard.OnFragmentInteractionListener, UserPayments.OnFragmentInteractionListener, Notices.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, UserDashboard.OnFragmentInteractionListener, UserPayments.OnFragmentInteractionListener, Notices.OnFragmentInteractionListener, NoticeFragment.OnFragmentInteractionListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
@@ -34,6 +34,8 @@ public class UserProfileActivity extends AppCompatActivity
         setContentView(R.layout.activity_user_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        setTitle("Flat no: " + getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS,MODE_PRIVATE).getString("username",null).substring(6));
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.viewPager);

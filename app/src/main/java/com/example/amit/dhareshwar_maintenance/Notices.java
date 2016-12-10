@@ -5,6 +5,8 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,23 +77,44 @@ public class Notices extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_notices, container, false);
 
-        LinearLayout notices_linear_layout = (LinearLayout) rootView.findViewById(R.id.notices_linear_layout);
-        TextView displayNoticeTextView;
+        RecyclerView noticeRecyclerView = (RecyclerView) rootView.findViewById(R.id.notice_recycler_view);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        noticeRecyclerView.setLayoutManager(linearLayoutManager);
 
         try {
             JSONObject receivedNotices = new GetNoticesFromServer(getActivity()).execute().get();
-            Iterator<?> keys = receivedNotices.keys();
-            while (keys.hasNext()) {
-                String noticeID = (String)keys.next();
-                JSONObject notice = (JSONObject) receivedNotices.get(noticeID);
-                String[] notice_fields = getResources().getStringArray(R.array.notice_fields);
-                displayNoticeTextView = new TextView(getContext());
-                displayNoticeTextView.setText(notice_fields[0] + noticeID + "\n" + notice.get("notice_date") + "\n" + notice.get("notice_subject") + "\n" + notice.get("main_body") + "\n" + notice_fields[1] + notice.get("sender_privilege_level") + "\n\n\n");
-                notices_linear_layout.addView(displayNoticeTextView, 0);
-            }
-        } catch (InterruptedException | ExecutionException | JSONException e) {
+            NoticeRecyclerViewAdapter noticeRecyclerViewAdapter = new NoticeRecyclerViewAdapter(receivedNotices);
+            noticeRecyclerView.setAdapter(noticeRecyclerViewAdapter);
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
+
+
+//        LinearLayout notices_linear_layout = (LinearLayout) rootView.findViewById(R.id.notices_linear_layout);
+//        TextView displayNoticeTextView;
+//
+//        try {
+//            JSONObject receivedNotices = new GetNoticesFromServer(getActivity()).execute().get();
+//            Iterator<?> keys = receivedNotices.keys();
+//            int notice_fragment_container_linearLayout_id_incrementer = 1;
+//            while (keys.hasNext()) {
+//                String noticeID = (String)keys.next();
+//                JSONObject notice = (JSONObject) receivedNotices.get(noticeID);
+//                String[] notice_fields = getResources().getStringArray(R.array.notice_fields);
+//
+//                LinearLayout fragment_container = new LinearLayout(getContext());
+//                int notice_fragment_container_linearLayout_id = notice_fragment_container_linearLayout_id_incrementer++;
+//                fragment_container.setOrientation(LinearLayout.HORIZONTAL);
+//                fragment_container.setId(notice_fragment_container_linearLayout_id);
+//                getFragmentManager().beginTransaction().add(fragment_container.getId(),NoticeFragment.newInstance(noticeID,notice)).commit();
+//                notices_linear_layout.addView(fragment_container);
+////                displayNoticeTextView = new TextView(getContext());
+////                displayNoticeTextView.setText(notice_fields[0] + noticeID + "\n" + notice.get("notice_date") + "\n" + notice.get("notice_subject") + "\n" + notice.get("main_body") + "\n" + notice_fields[1] + notice.get("sender_privilege_level") + "\n\n\n");
+////                notices_linear_layout.addView(displayNoticeTextView, 0);
+//            }
+//        } catch (InterruptedException | ExecutionException | JSONException e) {
+//            e.printStackTrace();
+//        }
         return rootView;
     }
 
