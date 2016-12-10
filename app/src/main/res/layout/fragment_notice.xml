@@ -12,7 +12,8 @@
         android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        app:cardUseCompatPadding="false" >
+        app:cardUseCompatPadding="false"
+        app:cardCornerRadius="16dp">
 
         <!--<RelativeLayout-->
             <!--android:id="@+id/noticeRL"-->
