@@ -66,8 +66,12 @@ public class PaymentsRecyclerViewAdapter extends RecyclerView.Adapter {
                 paymentViewHolder.confirmed_date.setText(R.string.not_confirmed_yet);
             }
 
-            paymentViewHolder.payment_image_view.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_action_name));
-
+            if(payment.getString("payment_method").equals("Cash")) {
+                paymentViewHolder.payment_image_view.setImageDrawable(context.getDrawable(R.drawable.cash));
+            }
+            else if(payment.getString("payment_method").equals("Cheque")) {
+                paymentViewHolder.payment_image_view.setImageDrawable(context.getDrawable(R.drawable.cheque));
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
