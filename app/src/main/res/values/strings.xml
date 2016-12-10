@@ -5,6 +5,7 @@
     <string name="login">Log in</string>
     <string name="login_PHP">http://192.168.0.100/DhareshwarPHP/login.php</string>
     <string name="password_change_PHP">http://192.168.0.100/DhareshwarPHP/password_change.php</string>
+    <string name="user_payments_PHP">http://192.168.0.100/DhareshwarPHP/user_payments.php</string>
     <string name="notices_PHP">http://192.168.0.100/DhareshwarPHP/notices.php</string>
     <string name="password_change">Change Password</string>
     <string name="password_change_dialog">For security reasons, please change your password.</string>
@@ -116,5 +117,12 @@
 
     <string name="notice_details">See details</string>
     <string name="notice_id">Notice ID:</string>
+
+    <string name="payment_amount">\u20B9 %1$s</string>
+    <string name="not_confirmed_yet">Not confirmed yet</string>
+    <string name="payment_id">Payment ID:  %1$s</string>
+    <string name="payment_type">Payment type:  %1$s</string>
+    <string name="payment_method">Payment method:  %1$s</string>
+    <string name="payment_confirmation">Confirmed on:  %1$s</string>
 
 </resources>

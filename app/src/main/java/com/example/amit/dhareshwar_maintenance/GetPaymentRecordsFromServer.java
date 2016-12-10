@@ -2,8 +2,10 @@ package com.example.amit.dhareshwar_maintenance;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,47 +16,43 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 
 /**
- * Created by amit on 3/12/16.
+ * Created by amit on 10/12/16.
  */
 
-public class LoginToServer extends AsyncTask<String, String, String> {
+public class GetPaymentRecordsFromServer extends AsyncTask<String,String,JSONArray> {
 
-    public Context context;
+    Context context;
 
-    public LoginToServer(Context context) {
+    public GetPaymentRecordsFromServer(Context context) {
         this.context = context;
     }
 
     @Override
-    protected String doInBackground(String... strings) {
-        try {
-            String username = strings[0];
-            String password = strings[1];
-            String link = context.getResources().getString(R.string.login_PHP);
+    protected JSONArray doInBackground(String... strings) {
+        String username = context.getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS,Context.MODE_PRIVATE).getString("username",null);
+        String link = context.getString(R.string.user_payments_PHP);
 
-            String data = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(username, "UTF-8") + "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
+        try {
             URL url = new URL(link);
             URLConnection conn = url.openConnection();
             conn.setDoOutput(true);
+
             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+            String data = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(username, "UTF-8");
             wr.write(data);
             wr.flush();
+
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
-            return sb.toString();
-        } catch (IOException e) {
+
+            return new JSONArray(sb.toString());
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
         return null;
     }
-
-    @Override
-    protected void onPostExecute(String s) {
-
-    }
 }
-

@@ -4,9 +4,17 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -64,7 +72,20 @@ public class UserPayments extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_payments, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_user_payments, container, false);
+        RecyclerView paymentsRecyclerView = (RecyclerView) rootView.findViewById(R.id.payments_recycler_view);
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        paymentsRecyclerView.setLayoutManager(llm);
+        try {
+            JSONArray paymentRecords = new GetPaymentRecordsFromServer(getContext()).execute().get();
+            PaymentsRecyclerViewAdapter paymentsRecyclerViewAdapter = new PaymentsRecyclerViewAdapter(paymentRecords, getContext());
+            paymentsRecyclerView.setAdapter(paymentsRecyclerViewAdapter);
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+        paymentsRecyclerView.addItemDecoration(new DividerDecorationRecyclerView(paymentsRecyclerView.getContext(), R.drawable.payment_divider));
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
