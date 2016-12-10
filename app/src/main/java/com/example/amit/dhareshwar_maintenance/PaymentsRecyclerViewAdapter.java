@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,8 +66,12 @@ public class PaymentsRecyclerViewAdapter extends RecyclerView.Adapter {
                 paymentViewHolder.confirmed_date.setText(R.string.not_confirmed_yet);
             }
 
-
-
+            if(payment.getString("payment_method").equals("Cash")) {
+                paymentViewHolder.payment_image_view.setImageDrawable(context.getDrawable(R.drawable.cash));
+            }
+            else if(payment.getString("payment_method").equals("Cheque")) {
+                paymentViewHolder.payment_image_view.setImageDrawable(context.getDrawable(R.drawable.cheque));
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -80,6 +85,7 @@ public class PaymentsRecyclerViewAdapter extends RecyclerView.Adapter {
     public static class PaymentViewHolder extends RecyclerView.ViewHolder {
         TextView amount, payment_date, confirmed_date, payment_method, payment_type, payment_id;
         RelativeLayout paymentRelativeLayout;
+        ImageView payment_image_view;
         public PaymentViewHolder(View itemView) {
             super(itemView);
             amount = (TextView) itemView.findViewById(R.id.payment_amount);
@@ -89,6 +95,7 @@ public class PaymentsRecyclerViewAdapter extends RecyclerView.Adapter {
             payment_id = (TextView) itemView.findViewById(R.id.payment_id);
             payment_date = (TextView) itemView.findViewById(R.id.payment_date);
             paymentRelativeLayout = (RelativeLayout) itemView.findViewById(R.id.payment_relative_layout);
+            payment_image_view = (ImageView) itemView.findViewById(R.id.payment_image_view);
         }
     }
 }
