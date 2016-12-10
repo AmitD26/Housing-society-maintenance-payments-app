@@ -116,5 +116,6 @@
 
     <string name="notice_details">See details</string>
     <string name="notice_id">Notice ID:</string>
+    <string name="pay">PAY</string>
 
 </resources>
