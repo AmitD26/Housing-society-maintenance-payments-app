@@ -4,6 +4,10 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +68,15 @@ public class UserDashboard extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_dashboard, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_user_dashboard, container, false);
+
+        RecyclerView dashboardRecyclerView = (RecyclerView) rootView.findViewById(R.id.dashboard_recycler_view);
+        dashboardRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.HORIZONTAL));
+//        dashboardRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//        dashboardRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        dashboardRecyclerView.setAdapter(new DashboardRecyclerViewAdapter());
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
