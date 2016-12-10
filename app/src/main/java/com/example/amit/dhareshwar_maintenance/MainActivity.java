@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         String existing_user = getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS,MODE_PRIVATE).getString("username",null);
         if(existing_user != null) {
             startActivity(new Intent(this,UserProfileActivity.class));
+            finish();
         }
 
         super.onCreate(savedInstanceState);
@@ -37,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         login = (Button) findViewById(R.id.login);
+
+        username.setFocusable(true);
+        username.requestFocus();
+//        (InputMethod)
    }
 
     public void loginButtonClicked(View v) {
@@ -54,12 +59,13 @@ public class MainActivity extends AppCompatActivity {
 
                 if( ! usernameString.equals(passwordString)) {
                     startActivity(new Intent(this,UserProfileActivity.class));
+                    finish();
                     return;
                 }
 
                 final AlertDialog.Builder newPasswordDialogBuilder = new AlertDialog.Builder(this);
                 newPasswordDialogBuilder.setTitle(R.string.password_change_dialog);
-                final View alertDialogView = getLayoutInflater().inflate(R.layout.password_change, null);
+                final View alertDialogView = getLayoutInflater().inflate(R.layout.password_change_dialog, null);
                 newPasswordDialogBuilder.setView(alertDialogView);
                 newPasswordDialogBuilder.setCancelable(false);
                 newPasswordDialogBuilder.setPositiveButton(R.string.confirm, null);
@@ -77,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
                                 String newPasswordString = newPassword.getText().toString();
                                 String confirmNewPasswordString = confirmNewPassword.getText().toString();
 
+                                newPassword.requestFocus();
+
                                 if (newPasswordString.equals(confirmNewPasswordString)) {
                                     if (newPasswordString.length() < 8) {
                                         passwordInstructions.setText(R.string.password_length_inadequate);
@@ -86,9 +94,20 @@ public class MainActivity extends AppCompatActivity {
                                             JSONObject serverResponse = new ChangePassword().execute(usernameString, newPasswordString, getResources().getString(R.string.password_change_PHP)).get();
                                             if (serverResponse.getBoolean("success")) {
                                                 dialogInterface.dismiss();
-                                                Intent intent = new Intent(MainActivity.this,UserProfileActivity.class);
-                                                startActivity(intent);
-                                                Toast.makeText(MainActivity.this, "Password changed successfully", Toast.LENGTH_LONG).show();
+
+                                                AlertDialog.Builder passwordChangedSuccessfully = new AlertDialog.Builder(MainActivity.this);
+                                                passwordChangedSuccessfully.setCancelable(false);
+                                                passwordChangedSuccessfully.setTitle(R.string.password_changed_successfully);
+                                                passwordChangedSuccessfully.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        Intent intent = new Intent(MainActivity.this,UserProfileActivity.class);
+                                                        startActivity(intent);
+                                                        dialogInterface.dismiss();
+                                                        MainActivity.this.finish();
+                                                    }
+                                                });
+                                                passwordChangedSuccessfully.show();
                                             }
                                         } catch (InterruptedException | ExecutionException | JSONException e) {
                                             e.printStackTrace();
