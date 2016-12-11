@@ -4,9 +4,18 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -64,7 +73,22 @@ public class UserDashboard extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_dashboard, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_user_dashboard, container, false);
+
+        RecyclerView dashboardRecyclerView = (RecyclerView) rootView.findViewById(R.id.dashboard_recycler_view);
+        dashboardRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        try {
+            JSONObject resident_info = new GetResidentInfoFromServer(getContext()).execute().get();
+            JSONObject dues_info = new GetDuesInfoFromServer(getContext()).execute().get();
+            JSONArray paymentRecords = new GetPaymentRecordsFromServer(getContext()).execute().get();
+
+            dashboardRecyclerView.setAdapter(new DashboardRecyclerViewAdapter(getContext(),resident_info,dues_info,paymentRecords,null));
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+//        dashboardRecyclerView.addItemDecoration(new DividerDecorationRecyclerView(getContext(),R.drawable.payment_divider));
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

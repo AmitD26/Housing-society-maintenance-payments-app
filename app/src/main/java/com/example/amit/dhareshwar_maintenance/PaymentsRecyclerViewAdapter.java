@@ -54,7 +54,9 @@ public class PaymentsRecyclerViewAdapter extends RecyclerView.Adapter {
             if (payment.getString("confirmed_flag").equals("1")) {
                 paymentViewHolder.confirmed_date.setTextColor(Color.GREEN);
                 paymentViewHolder.confirmed_date.setText(String.format(context.getString(R.string.payment_confirmation),payment.getString("payment_confirmation_date")));
-                paymentViewHolder.paymentRelativeLayout.setOnClickListener(new View.OnClickListener() {
+
+                paymentViewHolder.view_receipt.setVisibility(TextView.VISIBLE);
+                paymentViewHolder.view_receipt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
@@ -83,7 +85,7 @@ public class PaymentsRecyclerViewAdapter extends RecyclerView.Adapter {
     }
 
     public static class PaymentViewHolder extends RecyclerView.ViewHolder {
-        TextView amount, payment_date, confirmed_date, payment_method, payment_type, payment_id;
+        TextView amount, payment_date, confirmed_date, payment_method, payment_type, payment_id, view_receipt;
         RelativeLayout paymentRelativeLayout;
         ImageView payment_image_view;
         public PaymentViewHolder(View itemView) {
@@ -96,6 +98,7 @@ public class PaymentsRecyclerViewAdapter extends RecyclerView.Adapter {
             payment_date = (TextView) itemView.findViewById(R.id.payment_date);
             paymentRelativeLayout = (RelativeLayout) itemView.findViewById(R.id.payment_relative_layout);
             payment_image_view = (ImageView) itemView.findViewById(R.id.payment_image_view);
+            view_receipt = (TextView) itemView.findViewById(R.id.view_receipt);
         }
     }
 }

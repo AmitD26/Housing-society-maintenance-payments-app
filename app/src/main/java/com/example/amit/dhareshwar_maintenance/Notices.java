@@ -89,6 +89,7 @@ public class Notices extends Fragment {
             e.printStackTrace();
         }
 
+//        noticeRecyclerView.addItemDecoration(new DividerDecorationRecyclerView(getContext(), R.drawable.payment_divider));
 
 //        LinearLayout notices_linear_layout = (LinearLayout) rootView.findViewById(R.id.notices_linear_layout);
 //        TextView displayNoticeTextView;

@@ -6,13 +6,15 @@
     tools:context="com.example.amit.dhareshwar_maintenance.NoticeFragment">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/notice_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        app:cardUseCompatPadding="false" >
+        app:cardUseCompatPadding="false"
+        app:cardCornerRadius="16dp">
 
         <!--<RelativeLayout-->
             <!--android:id="@+id/noticeRL"-->

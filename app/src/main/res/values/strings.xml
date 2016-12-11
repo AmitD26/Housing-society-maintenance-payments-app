@@ -3,10 +3,14 @@
     <string name="username">Enter username</string>
     <string name="password">Enter password</string>
     <string name="login">Log in</string>
+
     <string name="login_PHP">http://192.168.0.100/DhareshwarPHP/login.php</string>
     <string name="password_change_PHP">http://192.168.0.100/DhareshwarPHP/password_change.php</string>
     <string name="user_payments_PHP">http://192.168.0.100/DhareshwarPHP/user_payments.php</string>
+    <string name="resident_info_PHP">http://192.168.0.100/DhareshwarPHP/resident_info.php</string>
     <string name="notices_PHP">http://192.168.0.100/DhareshwarPHP/notices.php</string>
+    <string name="dues_PHP">http://192.168.0.100/DhareshwarPHP/dues.php</string>
+
     <string name="password_change">Change Password</string>
     <string name="password_change_dialog">For security reasons, please change your password.</string>
     <string name="enter_new_password">Enter new password:</string>
@@ -124,5 +128,10 @@
     <string name="payment_type">Payment type:  %1$s</string>
     <string name="payment_method">Payment method:  %1$s</string>
     <string name="payment_confirmation">Confirmed on:  %1$s</string>
+    <string name="flat_no">Flat no: %1$s</string>
+    <string name="owner_name">Owner name :%1$s</string>
+
+    <string name="dues">Dues:  \u20B9 %1$s</string>
+    <string name="view_receipt">View receipt</string>
 
 </resources>
