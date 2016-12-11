@@ -2,6 +2,7 @@ package com.example.amit.dhareshwar_maintenance;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +52,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter {
                 context.startActivity(new Intent(context,NoticeDetailsActivity.class).putExtra("notice_id",noticeID));
             }
         });
+
     }
 
     @Override
@@ -59,6 +61,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter {
     }
 
     public static class NoticeViewHolder extends RecyclerView.ViewHolder {
+        CardView noticeCard;
         TextView noticeID, noticeDate, noticeSubject, noticeSender;
         RelativeLayout noticeCardRelativeLayout;
 
@@ -69,6 +72,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter {
             noticeSubject = (TextView) itemView.findViewById(R.id.notice_subject_textView);
             noticeSender = (TextView) itemView.findViewById(R.id.notice_sender_textView);
             noticeCardRelativeLayout = (RelativeLayout) itemView.findViewById(R.id.notice_card_relative_layout);
+            noticeCard = (CardView) itemView.findViewById(R.id.notice_card);
         }
     }
 }

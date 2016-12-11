@@ -1,8 +1,9 @@
 package com.example.amit.dhareshwar_maintenance;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by amit on 10/12/16.
@@ -24,15 +27,15 @@ public class DashboardRecyclerViewAdapter extends RecyclerView.Adapter {
     public static final int RECENT_PAYMENTS_CARD = 3;
     public static final int RECENT_RECEIPTS_CARD = 4;
 
-    public JSONObject residentInfo, dues;
+    public JSONObject residentInfo, duesInfo;
     public JSONArray recent_payments, recent_receipts;
     public Context context;
 
-    public DashboardRecyclerViewAdapter(Context context, JSONObject residentInfo, JSONObject dues, JSONArray recent_payments, JSONArray recent_receipts) {
+    public DashboardRecyclerViewAdapter(Context context, JSONObject residentInfo, JSONObject duesInfo, JSONArray recent_payments, JSONArray recent_receipts) {
         this.context = context;
         this.recent_payments = recent_payments;
         this.residentInfo = residentInfo;
-        this.dues = dues;
+        this.duesInfo = duesInfo;
         this.recent_receipts = recent_receipts;
     }
 
@@ -58,14 +61,31 @@ public class DashboardRecyclerViewAdapter extends RecyclerView.Adapter {
         try {
             if (holder instanceof StatusCardViewHolder) {
                 if (residentInfo.getString("status").equals("Tenant living")) {
+                    ((StatusCardViewHolder) holder).status_tenant_image_view.setImageDrawable(context.getDrawable(R.drawable.cheque));
                     ((StatusCardViewHolder) holder).owner_name.setVisibility(TextView.VISIBLE);
-                    ((StatusCardViewHolder) holder).owner_name.setText(residentInfo.getString("owner_name"));
+                    ((StatusCardViewHolder) holder).owner_name.setText(String.format(context.getString(R.string.owner_name),residentInfo.getString("owner_name")));
                     ((StatusCardViewHolder) holder).resident_name.setText(residentInfo.getString("tenant_name"));
                 }
                 else {
                     ((StatusCardViewHolder) holder).resident_name.setText(residentInfo.getString("owner_name"));
                 }
                 ((StatusCardViewHolder) holder).flat_no.setText(String.format(context.getString(R.string.flat_no), residentInfo.getString("flat_no")));
+            }
+            else if (holder instanceof DuesCardViewHolder) {
+//                Integer dues = Integer.parseInt(duesInfo.getString("dues"));
+//                DateFormat df = new SimpleDateFormat("yyyy-mm-dd", Locale.US);
+//                Date dues_cleared_up_to = df.parse(duesInfo.getString("dues_cleared_upto"));
+                if (Integer.parseInt(duesInfo.getString("dues")) > 500) {
+                    ((DuesCardViewHolder) holder).dues_left.setTextColor(Color.RED);
+                }
+                ((DuesCardViewHolder) holder).dues_left.setText(String.format(context.getString(R.string.dues),duesInfo.getString("dues")));
+                ((DuesCardViewHolder) holder).dues_left_for.setText(duesInfo.getString("dues_cleared_upto"));
+            }
+            else if (holder instanceof RecentPaymentsCardViewHolder) {
+                RecyclerView recentPaymentsRecyclerView = (RecyclerView) ((RecentPaymentsCardViewHolder) holder).recentPaymentsCardRecyclerView;
+                recentPaymentsRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+                recentPaymentsRecyclerView.setAdapter(new RecentPaymentsCardRecyclerViewAdapter(context,recent_payments,3));
+                recentPaymentsRecyclerView.addItemDecoration(new DividerDecorationRecyclerView(context));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -118,6 +138,7 @@ public class DashboardRecyclerViewAdapter extends RecyclerView.Adapter {
     }
 
     public static class RecentPaymentsCardViewHolder extends RecyclerView.ViewHolder {
+        RecyclerView recentPaymentsCardRecyclerView;
         ImageView payment_image_view;
         TextView payment_amount;
         TextView payment_date;
@@ -134,6 +155,7 @@ public class DashboardRecyclerViewAdapter extends RecyclerView.Adapter {
             payment_id = (TextView) itemView.findViewById(R.id.payment_id);
             payment_method = (TextView) itemView.findViewById(R.id.payment_method);
             payment_type = (TextView) itemView.findViewById(R.id.payment_type);
+            recentPaymentsCardRecyclerView = (RecyclerView) itemView.findViewById(R.id.recent_payments_card_recyclerView);
         }
     }
 

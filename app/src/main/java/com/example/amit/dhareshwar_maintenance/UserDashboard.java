@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
@@ -78,11 +79,14 @@ public class UserDashboard extends Fragment {
         dashboardRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         try {
             JSONObject resident_info = new GetResidentInfoFromServer(getContext()).execute().get();
-            dashboardRecyclerView.setAdapter(new DashboardRecyclerViewAdapter(getContext(),resident_info,null,null,null));
+            JSONObject dues_info = new GetDuesInfoFromServer(getContext()).execute().get();
+            JSONArray paymentRecords = new GetPaymentRecordsFromServer(getContext()).execute().get();
+
+            dashboardRecyclerView.setAdapter(new DashboardRecyclerViewAdapter(getContext(),resident_info,dues_info,paymentRecords,null));
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-
+//        dashboardRecyclerView.addItemDecoration(new DividerDecorationRecyclerView(getContext(),R.drawable.payment_divider));
 
         return rootView;
     }

@@ -83,7 +83,7 @@ public class UserPayments extends Fragment {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-        paymentsRecyclerView.addItemDecoration(new DividerDecorationRecyclerView(paymentsRecyclerView.getContext(), R.drawable.payment_divider));
+//        paymentsRecyclerView.addItemDecoration(new DividerDecorationRecyclerView(paymentsRecyclerView.getContext(), R.drawable.payment_divider));
 
         return rootView;
     }

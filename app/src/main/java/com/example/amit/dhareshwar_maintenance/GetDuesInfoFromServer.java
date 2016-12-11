@@ -18,17 +18,17 @@ import java.net.URLEncoder;
  * Created by amit on 11/12/16.
  */
 
-public class GetResidentInfoFromServer extends AsyncTask<String,String,JSONObject> {
+public class GetDuesInfoFromServer extends AsyncTask<String, String, JSONObject> {
     Context context;
 
-    public GetResidentInfoFromServer(Context context) {
+    public GetDuesInfoFromServer(Context context) {
         this.context = context;
     }
 
     @Override
     protected JSONObject doInBackground(String... strings) {
-        String link = context.getString(R.string.resident_info_PHP);
-        String username = context.getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS,Context.MODE_PRIVATE).getString("username",null);
+        String link = context.getString(R.string.dues_PHP);
+        String username = context.getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS, Context.MODE_PRIVATE).getString("username",null);
         try {
             URL url = new URL(link);
             URLConnection conn = url.openConnection();
