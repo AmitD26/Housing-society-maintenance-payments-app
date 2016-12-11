@@ -132,6 +132,6 @@
     <string name="owner_name">Owner name :%1$s</string>
 
     <string name="dues">Dues:  \u20B9 %1$s</string>
-    <string name="view_receipt">View receipt</string>
+    <string name="view_receipt">Request receipt.</string>
 
 </resources>
