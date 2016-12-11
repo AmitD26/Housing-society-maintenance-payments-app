@@ -71,9 +71,15 @@ public class UserDashboard extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_user_dashboard, container, false);
 
         RecyclerView dashboardRecyclerView = (RecyclerView) rootView.findViewById(R.id.dashboard_recycler_view);
-        dashboardRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.HORIZONTAL));
-//        dashboardRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//        dashboardRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.HORIZONTAL));
+        dashboardRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 //        dashboardRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+//        dashboardRecyclerView.setLayoutManager(new RecyclerView.LayoutManager() {
+//            @Override
+//            public RecyclerView.LayoutParams generateDefaultLayoutParams() {
+//                return null;
+//            }
+//        });
         dashboardRecyclerView.setAdapter(new DashboardRecyclerViewAdapter());
 
         return rootView;

@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.azoft.expandlayoutmanager.ExpandLayoutManager;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -78,7 +80,7 @@ public class Notices extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_notices, container, false);
 
         RecyclerView noticeRecyclerView = (RecyclerView) rootView.findViewById(R.id.notice_recycler_view);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        ExpandLayoutManager linearLayoutManager = new ExpandLayoutManager();
         noticeRecyclerView.setLayoutManager(linearLayoutManager);
 
         try {
