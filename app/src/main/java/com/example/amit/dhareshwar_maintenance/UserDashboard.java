@@ -12,6 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,10 +75,14 @@ public class UserDashboard extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_user_dashboard, container, false);
 
         RecyclerView dashboardRecyclerView = (RecyclerView) rootView.findViewById(R.id.dashboard_recycler_view);
-        dashboardRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.HORIZONTAL));
-//        dashboardRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//        dashboardRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-        dashboardRecyclerView.setAdapter(new DashboardRecyclerViewAdapter());
+        dashboardRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        try {
+            JSONObject resident_info = new GetResidentInfoFromServer(getContext()).execute().get();
+            dashboardRecyclerView.setAdapter(new DashboardRecyclerViewAdapter(getContext(),resident_info,null,null,null));
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
 
         return rootView;
     }
