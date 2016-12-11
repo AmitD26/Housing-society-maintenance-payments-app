@@ -102,13 +102,13 @@ public class UserProfileActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.view_by_month) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.view_by_flat_no) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.details_of_all_payments) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.requests_for_receipts) {
 
         } else if (id == R.id.send_notice) {
 

@@ -133,5 +133,15 @@
 
     <string name="dues">Dues:  \u20B9 %1$s</string>
     <string name="view_receipt">Request receipt.</string>
+    <string name="view_details_of_all_payments_received">View details of all payments received.</string>
+    <string name="view_by_flat_number">View by flat number.</string>
+    <string name="view_by_month">View by month.</string>
+    <string name="view_sent_receipts">View sent receipts.</string>
+    <string name="view_requests_for_receipts">View requests for receipts.</string>
+    <string name="communicate">Communicate</string>
+    <string name="send_a_notice">Send a notice.</string>
+    <string name="send_a_payment_reminder">Send a payment reminder.</string>
+    <string name="send_feedback_to_developer">Send feedback to developer.</string>
+    <string name="any_issues">Any issues?</string>
 
 </resources>

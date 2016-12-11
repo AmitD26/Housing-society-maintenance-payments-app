@@ -2,44 +2,44 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="view_by_month"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="View by month." />
+            android:title="@string/view_by_month" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/view_by_flat_no"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="View by flat number." />
+            android:title="@string/view_by_flat_number" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/details_of_all_payments"
             android:icon="@drawable/ic_info_black_24dp"
-            android:title="View details of all payments received." />
+            android:title="@string/view_details_of_all_payments_received" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/requests_for_receipts"
             android:icon="@drawable/ic_notifications_black_24dp"
-            android:title="View requests for receipts." />
+            android:title="@string/view_requests_for_receipts" />
         <item
             android:icon="@drawable/ic_keyboard_arrow_right_black_24dp"
-            android:title="View sent receipts." />
+            android:title="@string/view_sent_receipts" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/communicate">
         <menu>
             <item
                 android:id="@+id/send_notice"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send a notice." />
+                android:title="@string/send_a_notice" />
             <item
                 android:id="@+id/send_reminder"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send a payment reminder." />
+                android:title="@string/send_a_payment_reminder" />
         </menu>
     </item>
 
-    <item android:title="Any issues?">
+    <item android:title="@string/any_issues">
         <menu>
             <item
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send feedback to developer." />
+                android:title="@string/send_feedback_to_developer" />
         </menu>
     </item>
 
