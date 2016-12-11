@@ -7,7 +7,8 @@
     android:layout_marginEnd="10dp"
     android:layout_marginBottom="10dp"
     android:layout_marginTop="5dp"
-    app:cardCornerRadius="16dp">
+    app:cardCornerRadius="16dp"
+    android:descendantFocusability="blocksDescendants">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recent_payments_card_recyclerView"
