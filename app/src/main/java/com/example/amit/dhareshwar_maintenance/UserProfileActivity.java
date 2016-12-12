@@ -103,7 +103,7 @@ public class UserProfileActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.view_by_month) {
-            // Handle the camera action
+
         } else if (id == R.id.view_by_flat_no) {
 
         } else if (id == R.id.details_of_all_payments) {
