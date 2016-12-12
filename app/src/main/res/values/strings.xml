@@ -146,5 +146,6 @@
     <string name="receipts_to_be_sent">Receipts to be sent.</string>
     <string name="details_of_all_notices">Details of all notices.</string>
     <string name="home">Home.</string>
+    <string name="total_money_collected">Total money collected:</string>
 
 </resources>

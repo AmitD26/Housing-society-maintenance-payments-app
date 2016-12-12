@@ -19,9 +19,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
+import android.widget.Toast;
 
 public class UserProfileActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, UserDashboard.OnFragmentInteractionListener, UserPayments.OnFragmentInteractionListener, Notices.OnFragmentInteractionListener, NoticeFragment.OnFragmentInteractionListener, Home.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, UserDashboard.OnFragmentInteractionListener, UserPayments.OnFragmentInteractionListener, Notices.OnFragmentInteractionListener, NoticeFragment.OnFragmentInteractionListener, Home.OnFragmentInteractionListener, At_a_glance.OnFragmentInteractionListener {
 
 
     @Override
@@ -101,8 +103,16 @@ public class UserProfileActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.at_a_glance) {
-            // Handle the camera action
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+        if (id == R.id.home) {
+            tabLayout.setVisibility(TabLayout.VISIBLE);
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new Home()).commit();
+        } else if (id == R.id.at_a_glance) {
+//            tabLayout.setVisibility(TabLayout.GONE);
+//            getSupportActionBar().hide();
+            FrameLayout.LayoutParams =
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new At_a_glance()).commit();
         } else if (id == R.id.view_by_flat_no) {
 
         } else if (id == R.id.details_of_all_payments) {

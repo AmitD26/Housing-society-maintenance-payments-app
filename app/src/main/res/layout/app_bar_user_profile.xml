@@ -24,10 +24,15 @@
             android:layout_height="wrap_content" />
         </android.support.design.widget.AppBarLayout>
 
-    <include
-        layout="@layout/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <FrameLayout
+        android:layout_marginTop="105dp"
+        android:id="@+id/container"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
     <!--<include layout="@layout/content_user_profile"-->
         <!--android:id="@+id/include" />-->
 
