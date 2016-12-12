@@ -2,24 +2,38 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="view_by_month"
+            android:id="@+id/home"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/view_by_month" />
+            android:title="@string/home" />
+        <item
+            android:id="@+id/at_a_glance"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/at_a_glance" />
         <item
             android:id="@+id/view_by_flat_no"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/view_by_flat_number" />
+            android:title="@string/payments_to_be_confirmed" />
         <item
-            android:id="@+id/details_of_all_payments"
-            android:icon="@drawable/ic_info_black_24dp"
-            android:title="@string/view_details_of_all_payments_received" />
+            android:id="@+id/receipts_to_be_sent"
+            android:icon="@drawable/ic_notifications_black_24dp"
+            android:title="@string/receipts_to_be_sent" />
         <item
             android:id="@+id/requests_for_receipts"
             android:icon="@drawable/ic_notifications_black_24dp"
             android:title="@string/view_requests_for_receipts" />
         <item
+            android:id="@+id/details_of_all_payments"
+            android:icon="@drawable/ic_info_black_24dp"
+            android:title="@string/details_of_all_payments" />
+        <item
+            android:id="@+id/details_of_all_receipts"
             android:icon="@drawable/ic_keyboard_arrow_right_black_24dp"
-            android:title="@string/view_sent_receipts" />
+            android:title="@string/details_of_all_receipts" />
+        <item
+            android:id="@+id/details_of_all_notices"
+            android:icon="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:title="@string/details_of_all_notices" />
+
     </group>
 
     <item android:title="@string/communicate">

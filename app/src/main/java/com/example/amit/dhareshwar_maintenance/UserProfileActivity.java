@@ -21,11 +21,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class UserProfileActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, UserDashboard.OnFragmentInteractionListener, UserPayments.OnFragmentInteractionListener, Notices.OnFragmentInteractionListener, NoticeFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, UserDashboard.OnFragmentInteractionListener, UserPayments.OnFragmentInteractionListener, Notices.OnFragmentInteractionListener, NoticeFragment.OnFragmentInteractionListener, Home.OnFragmentInteractionListener {
 
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-
-    private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +33,14 @@ public class UserProfileActivity extends AppCompatActivity
 
         setTitle("Flat no: " + getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS,MODE_PRIVATE).getString("username",null).substring(6));
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        mViewPager = (ViewPager) findViewById(R.id.viewPager);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new Home()).commit();
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+//        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+//        mViewPager = (ViewPager) findViewById(R.id.viewPager);
+//        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+//        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+//        tabLayout.setupWithViewPager(mViewPager);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -102,8 +101,8 @@ public class UserProfileActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.view_by_month) {
-
+        if (id == R.id.at_a_glance) {
+            // Handle the camera action
         } else if (id == R.id.view_by_flat_no) {
 
         } else if (id == R.id.details_of_all_payments) {
@@ -121,45 +120,7 @@ public class UserProfileActivity extends AppCompatActivity
         return true;
     }
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    return UserDashboard.newInstance(null,null);
-                case 1:
-                    return UserPayments.newInstance(null,null);
-                case 2:
-                    return Notices.newInstance(null,null);
-            }
-            return null;
-        }
-
-        @Override
-        public int getCount() {
-            return 3;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            String[] tab_headers = getResources().getStringArray(R.array.user_profile_activity_tabs_headers);
-            switch (position) {
-                case 0:
-                    return tab_headers[0];
-                case 1:
-                    return tab_headers[1];
-                case 2:
-                    return tab_headers[2];
-            }
-
-            return super.getPageTitle(position);
-        }
-    }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
