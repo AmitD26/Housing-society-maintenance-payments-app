@@ -25,7 +25,6 @@
         </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
-        android:layout_marginTop="105dp"
         android:id="@+id/container"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"

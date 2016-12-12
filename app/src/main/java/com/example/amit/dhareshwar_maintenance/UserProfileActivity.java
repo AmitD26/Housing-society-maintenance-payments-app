@@ -3,6 +3,7 @@ package com.example.amit.dhareshwar_maintenance;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -10,6 +11,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -35,6 +38,10 @@ public class UserProfileActivity extends AppCompatActivity
 
         setTitle("Flat no: " + getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS,MODE_PRIVATE).getString("username",null).substring(6));
 
+        FrameLayout container = (FrameLayout) findViewById(R.id.container);
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) container.getLayoutParams();
+        layoutParams.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,105,getResources().getDisplayMetrics());
+        container.setLayoutParams(layoutParams);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, new Home()).commit();
 
 //        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -104,14 +111,21 @@ public class UserProfileActivity extends AppCompatActivity
         int id = item.getItemId();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        FrameLayout container = (FrameLayout) findViewById(R.id.container);
 
         if (id == R.id.home) {
+            getSupportActionBar().setTitle("Flat no: " + getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS,MODE_PRIVATE).getString("username",null).substring(6));
             tabLayout.setVisibility(TabLayout.VISIBLE);
+            CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) container.getLayoutParams();
+            layoutParams.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,105,getResources().getDisplayMetrics());
+            container.setLayoutParams(layoutParams);
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new Home()).commit();
         } else if (id == R.id.at_a_glance) {
-//            tabLayout.setVisibility(TabLayout.GONE);
-//            getSupportActionBar().hide();
-            FrameLayout.LayoutParams =
+            getSupportActionBar().setTitle("At a glance");
+            tabLayout.setVisibility(TabLayout.GONE);
+            CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) container.getLayoutParams();
+            layoutParams.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,50,getResources().getDisplayMetrics());
+            container.setLayoutParams(layoutParams);
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new At_a_glance()).commit();
         } else if (id == R.id.view_by_flat_no) {
 

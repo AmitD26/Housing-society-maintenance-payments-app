@@ -10,6 +10,9 @@
     <string name="resident_info_PHP">http://192.168.0.100/DhareshwarPHP/resident_info.php</string>
     <string name="notices_PHP">http://192.168.0.100/DhareshwarPHP/notices.php</string>
     <string name="dues_PHP">http://192.168.0.100/DhareshwarPHP/dues.php</string>
+    <string name="total_collected_money_PHP">http://192.168.0.100/DhareshwarPHP/total_money.php</string>
+    <string name="all_residents_info_PHP">http://192.168.0.100/DhareshwarPHP/residents_info.php</string>
+    <string name="all_residents_dues_info_PHP">http://192.168.0.100/DhareshwarPHP/dues_of_all.php</string>
 
     <string name="password_change">Change Password</string>
     <string name="password_change_dialog">For security reasons, please change your password.</string>
@@ -146,6 +149,14 @@
     <string name="receipts_to_be_sent">Receipts to be sent.</string>
     <string name="details_of_all_notices">Details of all notices.</string>
     <string name="home">Home.</string>
-    <string name="total_money_collected">Total money collected:</string>
+    <string name="total_cash_text">Total money collected in cash:</string>
+    <string name="total_money_collected_in_cheque">Total money collected in cheque:</string>
+    <string name="total">Total:</string>
+    <string name="collected_money">\u20B9 %1$s</string>
+    <string name="reset">RESET</string>
+    <string name="are_you_sure_reset_collected_money">Are you really sure that you have deposited all the collected money into the back accounts owned by the housing society?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
 
 </resources>
