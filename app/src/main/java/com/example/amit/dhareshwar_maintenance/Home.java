@@ -67,7 +67,7 @@ public class Home extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.tabs);
         ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
         viewPager.setAdapter(new HomeTabLayoutAdapter(getChildFragmentManager(),getContext()));
         tabLayout.setupWithViewPager(viewPager);
