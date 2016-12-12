@@ -154,9 +154,11 @@
     <string name="total">Total:</string>
     <string name="collected_money">\u20B9 %1$s</string>
     <string name="reset">RESET</string>
-    <string name="are_you_sure_reset_collected_money">Are you really sure that you have deposited all the collected money into the back accounts owned by the housing society?</string>
+    <string name="are_you_sure_reset_collected_money">Are you sure that you have deposited all the collected money into the back accounts owned by the housing society?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="enter_password_to_proceed">Please enter your password to proceed.</string>
+    <string name="cancel">Cancel</string>
 
 
 </resources>

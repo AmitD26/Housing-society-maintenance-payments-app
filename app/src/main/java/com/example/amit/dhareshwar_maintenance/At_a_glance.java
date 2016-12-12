@@ -2,20 +2,29 @@ package com.example.amit.dhareshwar_maintenance;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.TypedArrayUtils;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -115,13 +124,46 @@ public class At_a_glance extends Fragment {
                             @Override
                             public void onClick(View view) {
                                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
-                                alertDialogBuilder.setTitle(R.string.are_you_sure_reset_collected_money);
+                                TextView dialogTitle = new TextView(getContext());
+                                dialogTitle.setText(R.string.are_you_sure_reset_collected_money);
+                                dialogTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
+                                dialogTitle.setTypeface(Typeface.DEFAULT_BOLD);
+                                int padding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
+                                dialogTitle.setPadding(padding, padding, padding, padding);
+                                alertDialogBuilder.setCustomTitle(dialogTitle);
+//                                alertDialogBuilder.setView(inflater.inflate(R.layout.dialog_reset_collected_money, null, false));
                                 alertDialogBuilder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         AlertDialog.Builder passwordForResetCollectedMoney = new AlertDialog.Builder(getContext());
-                                        passwordForResetCollectedMoney.setTitle("Please enter your password to proceed.");
+                                        passwordForResetCollectedMoney.setTitle(R.string.enter_password_to_proceed);
                                         passwordForResetCollectedMoney.setCancelable(false);
+                                        final View passwordSecurityCheckDialogView = inflater.inflate(R.layout.password_security_check, null);
+                                        passwordForResetCollectedMoney.setView(passwordSecurityCheckDialogView);
+                                        passwordForResetCollectedMoney.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                String username = getContext().getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS, Context.MODE_PRIVATE).getString("username", null);
+                                                EditText password_editText = (EditText) passwordSecurityCheckDialogView.findViewById(R.id.enter_password_for_confirmation);
+                                                String password = password_editText.getText().toString();
+                                                try {
+                                                    JSONObject serverResponse = new JSONObject(new LoginToServer(getContext()).execute(username, password).get());
+                                                    Log.e("u p r",username + " " + password + " " + serverResponse.toString());
+                                                    if (serverResponse.getBoolean("success")) {
+                                                        Toast.makeText(getContext(), "Success.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                } catch (JSONException | InterruptedException | ExecutionException e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        });
+                                        passwordForResetCollectedMoney.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                dialogInterface.dismiss();
+                                            }
+                                        });
+                                        passwordForResetCollectedMoney.show();
                                     }
                                 });
                                 alertDialogBuilder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
