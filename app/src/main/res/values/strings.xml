@@ -160,6 +160,11 @@
     <string name="no">No</string>
     <string name="enter_password_to_proceed">Please enter your password to proceed.</string>
     <string name="cancel">Cancel</string>
+    <string name="receipt_received">Receipt received</string>
+    <string name="receipt_given">Receipt given</string>
+    <string name="receipt_not_given">Receipt not given</string>
+    <string name="receipt_given_on">"Receipt given on: %1$s"</string>
+    <string name="receipt_received_on">"Receipt received on: %1$s"</string>
 
 
 </resources>

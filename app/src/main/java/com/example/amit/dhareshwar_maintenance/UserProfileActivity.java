@@ -132,6 +132,9 @@ public class UserProfileActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new At_a_glance()).addToBackStack(null).commit();
         }
         else if (id == R.id.payments_to_be_confirmed) {
+
+        }
+        else if (id == R.id.details_of_all_payments) {
             getSupportActionBar().setTitle("To be confirmed.");
             tabLayout.setVisibility(TabLayout.GONE);
             CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) container.getLayoutParams();
@@ -159,6 +162,11 @@ public class UserProfileActivity extends AppCompatActivity
             if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
                 getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 getSupportActionBar().setTitle("Flat no: " + getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS,MODE_PRIVATE).getString("username",null).substring(6));
+
+                FrameLayout container = (FrameLayout) findViewById(R.id.container);
+                CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) container.getLayoutParams();
+                layoutParams.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,105,getResources().getDisplayMetrics());
+                container.setLayoutParams(layoutParams);
                 TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
                 tabLayout.setVisibility(TabLayout.VISIBLE);
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, new Home()).commit();

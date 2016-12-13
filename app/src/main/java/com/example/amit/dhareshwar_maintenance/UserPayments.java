@@ -84,7 +84,7 @@ public class UserPayments extends Fragment {
             else {
                 paymentRecords = new GetPaymentRecordsFromServer(getContext()).execute("all").get();
             }
-            PaymentsRecyclerViewAdapter paymentsRecyclerViewAdapter = new PaymentsRecyclerViewAdapter(paymentRecords, getContext());
+            PaymentsRecyclerViewAdapter paymentsRecyclerViewAdapter = new PaymentsRecyclerViewAdapter(paymentRecords, getContext(), mParam1);
             paymentsRecyclerView.setAdapter(paymentsRecyclerViewAdapter);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();

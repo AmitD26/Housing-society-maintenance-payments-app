@@ -2,6 +2,7 @@ package com.example.amit.dhareshwar_maintenance;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,9 +24,11 @@ public class PaymentsRecyclerViewAdapter extends RecyclerView.Adapter {
 
     JSONArray paymentRecords;
     Context context;
+    String single_or_all;
 
-    public PaymentsRecyclerViewAdapter(JSONArray paymentRecords, Context context) {
+    public PaymentsRecyclerViewAdapter(JSONArray paymentRecords, Context context, String single_or_all) {
         this.paymentRecords = new JSONArray();
+        this.single_or_all = single_or_all;
         for (int i = paymentRecords.length()-1; i>=0; i--) {
             try {
                 this.paymentRecords.put(paymentRecords.get(i));
@@ -56,12 +59,22 @@ public class PaymentsRecyclerViewAdapter extends RecyclerView.Adapter {
                 paymentViewHolder.confirmed_date.setText(String.format(context.getString(R.string.payment_confirmation),payment.getString("payment_confirmation_date")));
 
                 paymentViewHolder.view_receipt.setVisibility(TextView.VISIBLE);
-                paymentViewHolder.view_receipt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                if (payment.getString("receipt_received").equals("1")) {
+                    paymentViewHolder.receipt_given_date.setVisibility(TextView.VISIBLE);
+                    paymentViewHolder.receipt_received_date.setVisibility(TextView.VISIBLE);
+                    paymentViewHolder.view_receipt.setText(R.string.receipt_received);
+                    paymentViewHolder.receipt_received_date.setText(String.format(context.getString(R.string.receipt_received_on), payment.getString("receipt_received_date")));
+                    paymentViewHolder.receipt_given_date.setText(String.format(context.getString(R.string.receipt_given_on), payment.getString("receipt_received_date")));
+                }
+                else if (payment.getString("receipt_given").equals("1")) {
+                    paymentViewHolder.receipt_given_date.setVisibility(TextView.VISIBLE);
+                    paymentViewHolder.view_receipt.setText(R.string.receipt_given);
+                    paymentViewHolder.receipt_given_date.setText(String.format(context.getString(R.string.receipt_given_on), payment.getString("receipt_given_date")));
+                }
+                else {
+                    paymentViewHolder.view_receipt.setText(R.string.receipt_not_given);
+                }
 
-                    }
-                });
             }
             else {
                 paymentViewHolder.confirmed_date.setTextColor(Color.RED);
@@ -69,10 +82,10 @@ public class PaymentsRecyclerViewAdapter extends RecyclerView.Adapter {
             }
 
             if(payment.getString("payment_method").equals("Cash")) {
-                paymentViewHolder.payment_image_view.setImageDrawable(context.getDrawable(R.drawable.cash));
+                paymentViewHolder.payment_image_view.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.cash));
             }
             else if(payment.getString("payment_method").equals("Cheque")) {
-                paymentViewHolder.payment_image_view.setImageDrawable(context.getDrawable(R.drawable.cheque));
+                paymentViewHolder.payment_image_view.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.cheque));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -85,7 +98,7 @@ public class PaymentsRecyclerViewAdapter extends RecyclerView.Adapter {
     }
 
     public static class PaymentViewHolder extends RecyclerView.ViewHolder {
-        TextView amount, payment_date, confirmed_date, payment_method, payment_type, payment_id, view_receipt;
+        TextView amount, payment_date, confirmed_date, payment_method, payment_type, payment_id, view_receipt, receipt_given_date, receipt_received_date;
         RelativeLayout paymentRelativeLayout;
         ImageView payment_image_view;
         public PaymentViewHolder(View itemView) {
@@ -99,6 +112,8 @@ public class PaymentsRecyclerViewAdapter extends RecyclerView.Adapter {
             paymentRelativeLayout = (RelativeLayout) itemView.findViewById(R.id.payment_relative_layout);
             payment_image_view = (ImageView) itemView.findViewById(R.id.payment_image_view);
             view_receipt = (TextView) itemView.findViewById(R.id.view_receipt);
+            receipt_given_date = (TextView) itemView.findViewById(R.id.receipt_given_date);
+            receipt_received_date = (TextView) itemView.findViewById(R.id.receipt_received_date);
         }
     }
 }
