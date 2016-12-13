@@ -58,25 +58,27 @@ public class PaymentsRecyclerViewAdapter extends RecyclerView.Adapter {
                 paymentViewHolder.confirmed_date.setTextColor(Color.GREEN);
                 paymentViewHolder.confirmed_date.setText(String.format(context.getString(R.string.payment_confirmation),payment.getString("payment_confirmation_date")));
 
-                paymentViewHolder.view_receipt.setVisibility(TextView.VISIBLE);
                 if (payment.getString("receipt_received").equals("1")) {
                     paymentViewHolder.receipt_given_date.setVisibility(TextView.VISIBLE);
+                    paymentViewHolder.receipt_given_date.setText(String.format(context.getString(R.string.receipt_given_on), payment.getString("receipt_given_date")));
                     paymentViewHolder.receipt_received_date.setVisibility(TextView.VISIBLE);
-                    paymentViewHolder.view_receipt.setText(R.string.receipt_received);
                     paymentViewHolder.receipt_received_date.setText(String.format(context.getString(R.string.receipt_received_on), payment.getString("receipt_received_date")));
-                    paymentViewHolder.receipt_given_date.setText(String.format(context.getString(R.string.receipt_given_on), payment.getString("receipt_received_date")));
                 }
                 else if (payment.getString("receipt_given").equals("1")) {
+                    paymentViewHolder.receipt_received_date.setVisibility(TextView.GONE);
                     paymentViewHolder.receipt_given_date.setVisibility(TextView.VISIBLE);
-                    paymentViewHolder.view_receipt.setText(R.string.receipt_given);
                     paymentViewHolder.receipt_given_date.setText(String.format(context.getString(R.string.receipt_given_on), payment.getString("receipt_given_date")));
                 }
-                else {
-                    paymentViewHolder.view_receipt.setText(R.string.receipt_not_given);
+                else if (payment.getString("receipt_given").equals("0")) {
+                    paymentViewHolder.receipt_received_date.setVisibility(TextView.GONE);
+                    paymentViewHolder.receipt_given_date.setVisibility(TextView.VISIBLE);
+                    paymentViewHolder.receipt_given_date.setText(R.string.receipt_not_given);
                 }
 
             }
             else {
+                paymentViewHolder.receipt_given_date.setVisibility(TextView.GONE);
+                paymentViewHolder.receipt_received_date.setVisibility(TextView.GONE);
                 paymentViewHolder.confirmed_date.setTextColor(Color.RED);
                 paymentViewHolder.confirmed_date.setText(R.string.not_confirmed_yet);
             }
