@@ -10,7 +10,7 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/at_a_glance" />
         <item
-            android:id="@+id/view_by_flat_no"
+            android:id="@+id/payments_to_be_confirmed"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/payments_to_be_confirmed" />
         <item
@@ -29,10 +29,6 @@
             android:id="@+id/details_of_all_receipts"
             android:icon="@drawable/ic_keyboard_arrow_right_black_24dp"
             android:title="@string/details_of_all_receipts" />
-        <item
-            android:id="@+id/details_of_all_notices"
-            android:icon="@drawable/ic_keyboard_arrow_right_black_24dp"
-            android:title="@string/details_of_all_notices" />
 
     </group>
 

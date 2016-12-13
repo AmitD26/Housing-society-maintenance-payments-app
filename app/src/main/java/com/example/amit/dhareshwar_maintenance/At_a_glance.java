@@ -31,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 
@@ -150,7 +151,8 @@ public class At_a_glance extends Fragment {
                                                     JSONObject serverResponse = new JSONObject(new LoginToServer(getContext()).execute(username, password).get());
                                                     Log.e("u p r",username + " " + password + " " + serverResponse.toString());
                                                     if (serverResponse.getBoolean("success")) {
-                                                        Toast.makeText(getContext(), "Success.", Toast.LENGTH_SHORT).show();
+                                                        new ResetTotalCollectedMoney(getContext()).execute();
+                                                        // Confirmation----------------------------------------------------
                                                     }
                                                 } catch (JSONException | InterruptedException | ExecutionException e) {
                                                     e.printStackTrace();
@@ -191,7 +193,7 @@ public class At_a_glance extends Fragment {
                             public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
                                 FlatNumberCard flatNumberCardViewHolder = (FlatNumberCard) holder;
                                 try {
-                                    Integer dues = Integer.parseInt(residents_dues_info.getJSONObject(position).getString("dues"));
+                                    Long dues = Long.parseLong(residents_dues_info.getJSONObject(position).getString("dues"));
                                     flatNumberCardViewHolder.flatNumber.setText(residents_info.getJSONObject(position).getString("flat_no"));
                                     flatNumberCardViewHolder.status.setText(residents_info.getJSONObject(position).getString("status").substring(0,6));
                                     if (dues > 500) {

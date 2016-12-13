@@ -10,9 +10,12 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.KeyEventCompat;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -26,7 +29,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 public class UserProfileActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, UserDashboard.OnFragmentInteractionListener, UserPayments.OnFragmentInteractionListener, Notices.OnFragmentInteractionListener, NoticeFragment.OnFragmentInteractionListener, Home.OnFragmentInteractionListener, At_a_glance.OnFragmentInteractionListener {
+        implements KeyEvent.Callback, NavigationView.OnNavigationItemSelectedListener, UserDashboard.OnFragmentInteractionListener, UserPayments.OnFragmentInteractionListener, Notices.OnFragmentInteractionListener, NoticeFragment.OnFragmentInteractionListener, Home.OnFragmentInteractionListener, At_a_glance.OnFragmentInteractionListener {
 
 
     @Override
@@ -104,7 +107,6 @@ public class UserProfileActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -120,23 +122,22 @@ public class UserProfileActivity extends AppCompatActivity
             layoutParams.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,105,getResources().getDisplayMetrics());
             container.setLayoutParams(layoutParams);
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new Home()).commit();
-        } else if (id == R.id.at_a_glance) {
+        }
+        else if (id == R.id.at_a_glance) {
             getSupportActionBar().setTitle("At a glance");
             tabLayout.setVisibility(TabLayout.GONE);
             CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) container.getLayoutParams();
             layoutParams.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,50,getResources().getDisplayMetrics());
             container.setLayoutParams(layoutParams);
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new At_a_glance()).commit();
-        } else if (id == R.id.view_by_flat_no) {
-
-        } else if (id == R.id.details_of_all_payments) {
-
-        } else if (id == R.id.requests_for_receipts) {
-
-        } else if (id == R.id.send_notice) {
-
-        } else if (id == R.id.send_reminder) {
-
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new At_a_glance()).addToBackStack(null).commit();
+        }
+        else if (id == R.id.payments_to_be_confirmed) {
+            getSupportActionBar().setTitle("To be confirmed.");
+            tabLayout.setVisibility(TabLayout.GONE);
+            CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) container.getLayoutParams();
+            layoutParams.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,50,getResources().getDisplayMetrics());
+            container.setLayoutParams(layoutParams);
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserPayments.newInstance(null, null, 0)).addToBackStack(null).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -148,6 +149,28 @@ public class UserProfileActivity extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Log.e("a","aa");
+            if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+                getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                getSupportActionBar().setTitle("Flat no: " + getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS,MODE_PRIVATE).getString("username",null).substring(6));
+                TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+                tabLayout.setVisibility(TabLayout.VISIBLE);
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, new Home()).commit();
+            }
+            else {
+                return super.onKeyUp(keyCode, event);
+            }
+        }
+        else {
+            return super.onKeyUp(keyCode, event);
+        }
+        return true;
 
     }
 }

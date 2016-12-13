@@ -29,7 +29,7 @@ public class GetPaymentRecordsFromServer extends AsyncTask<String,String,JSONArr
 
     @Override
     protected JSONArray doInBackground(String... strings) {
-        String username = context.getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS,Context.MODE_PRIVATE).getString("username",null);
+        String username = strings[0];
         String link = context.getString(R.string.user_payments_PHP);
 
         try {
