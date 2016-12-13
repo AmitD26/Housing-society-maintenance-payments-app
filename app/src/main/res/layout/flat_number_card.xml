@@ -22,6 +22,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/flat_number"/>
+        <TextView
+            android:id="@+id/dues_flat_number_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/status"
+            android:textSize="18sp"/>
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

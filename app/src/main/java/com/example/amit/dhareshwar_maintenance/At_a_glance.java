@@ -191,13 +191,22 @@ public class At_a_glance extends Fragment {
                             public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
                                 FlatNumberCard flatNumberCardViewHolder = (FlatNumberCard) holder;
                                 try {
+                                    Integer dues = Integer.parseInt(residents_dues_info.getJSONObject(position).getString("dues"));
                                     flatNumberCardViewHolder.flatNumber.setText(residents_info.getJSONObject(position).getString("flat_no"));
                                     flatNumberCardViewHolder.status.setText(residents_info.getJSONObject(position).getString("status").substring(0,6));
-                                    if (Integer.parseInt(residents_dues_info.getJSONObject(position).getString("dues")) > 500) {
-                                        ((FlatNumberCard) holder).flatNumberCard.setCardBackgroundColor(ContextCompat.getColor(getContext(),R.color.light_red));
+                                    if (dues > 500) {
+//                                        ((FlatNumberCard) holder).flatNumberCard.setCardBackgroundColor(ContextCompat.getColor(getContext(),R.color.light_red));
+                                        ((FlatNumberCard) holder).dues.setText(String.format(getString(R.string.dues),dues.toString()));
+                                        ((FlatNumberCard) holder).dues.setTextColor(Color.RED);
                                     }
-                                    else if (Integer.parseInt(residents_dues_info.getJSONObject(position).getString("dues")) == 0){
-                                        ((FlatNumberCard) holder).flatNumberCard.setCardBackgroundColor(ContextCompat.getColor(getContext(),R.color.light_green));
+                                    else if (dues == 0){
+//                                        ((FlatNumberCard) holder).flatNumberCard.setCardBackgroundColor(ContextCompat.getColor(getContext(),R.color.light_green));
+                                        ((FlatNumberCard) holder).dues.setText(String.format(getString(R.string.dues),dues.toString()));
+                                        ((FlatNumberCard) holder).dues.setTextColor(Color.GREEN);
+                                    }
+                                    else {
+                                        ((FlatNumberCard) holder).dues.setText(String.format(getString(R.string.dues),dues.toString()));
+                                        ((FlatNumberCard) holder).dues.setTextColor(Color.RED);
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -211,12 +220,14 @@ public class At_a_glance extends Fragment {
 
                             class FlatNumberCard extends RecyclerView.ViewHolder {
                                 CardView flatNumberCard;
-                                TextView flatNumber, status;
+                                TextView flatNumber, status, dues;
                                 public FlatNumberCard(View itemView) {
                                     super(itemView);
                                     flatNumber = (TextView) itemView.findViewById(R.id.flat_number);
                                     status = (TextView) itemView.findViewById(R.id.status);
                                     flatNumberCard = (CardView) itemView.findViewById(R.id.flat_number_card);
+                                    dues = (TextView) itemView.findViewById(R.id.dues_flat_number_card);
+
                                 }
                             }
                         });
@@ -264,11 +275,11 @@ public class At_a_glance extends Fragment {
 
             class FlatNumbers extends RecyclerView.ViewHolder {
                 RecyclerView flatNumbersRecyclerView;
-                TextView flat_number, status;
+//                TextView flat_number, status;
                 public FlatNumbers(View itemView) {
                     super(itemView);
-                    flat_number = (TextView) itemView.findViewById(R.id.flat_number);
-                    status = (TextView) itemView.findViewById(R.id.status);
+//                    flat_number = (TextView) itemView.findViewById(R.id.flat_number);
+//                    status = (TextView) itemView.findViewById(R.id.status);
                     flatNumbersRecyclerView = (RecyclerView) itemView.findViewById(R.id.at_a_glance_inner_recycler_view);
                 }
             }
