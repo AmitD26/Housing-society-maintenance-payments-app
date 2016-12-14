@@ -132,15 +132,36 @@ public class UserProfileActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new At_a_glance()).addToBackStack(null).commit();
         }
         else if (id == R.id.payments_to_be_confirmed) {
-
-        }
-        else if (id == R.id.details_of_all_payments) {
             getSupportActionBar().setTitle("To be confirmed.");
             tabLayout.setVisibility(TabLayout.GONE);
             CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) container.getLayoutParams();
             layoutParams.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,50,getResources().getDisplayMetrics());
             container.setLayoutParams(layoutParams);
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserPayments.newInstance(null, null, 0)).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserPayments.newInstance(null, null, UserPayments.TO_BE_CONFIRMED)).addToBackStack(null).commit();
+        }
+        else if (id == R.id.details_of_all_payments) {
+            getSupportActionBar().setTitle("All payments.");
+            tabLayout.setVisibility(TabLayout.GONE);
+            CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) container.getLayoutParams();
+            layoutParams.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,50,getResources().getDisplayMetrics());
+            container.setLayoutParams(layoutParams);
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserPayments.newInstance(null, null, UserPayments.ALL_USERS)).addToBackStack(null).commit();
+        }
+        else if (id == R.id.receipts_to_be_sent) {
+            getSupportActionBar().setTitle("Receipts to be sent.");
+            tabLayout.setVisibility(TabLayout.GONE);
+            CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) container.getLayoutParams();
+            layoutParams.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,50,getResources().getDisplayMetrics());
+            container.setLayoutParams(layoutParams);
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserPayments.newInstance(null, null, UserPayments.RECEIPTS_TO_BE_SENT)).addToBackStack(null).commit();
+        }
+        else if (id == R.id.requests_for_receipts) {
+            getSupportActionBar().setTitle("Receipts to be sent.");
+            tabLayout.setVisibility(TabLayout.GONE);
+            CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) container.getLayoutParams();
+            layoutParams.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,50,getResources().getDisplayMetrics());
+            container.setLayoutParams(layoutParams);
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserPayments.newInstance(null, null, UserPayments.REQUESTS_FOR_RECEIPTS)).addToBackStack(null).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

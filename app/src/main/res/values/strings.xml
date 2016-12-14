@@ -14,6 +14,7 @@
     <string name="all_residents_info_PHP">http://192.168.0.100/DhareshwarPHP/residents_info.php</string>
     <string name="all_residents_dues_info_PHP">http://192.168.0.100/DhareshwarPHP/dues_of_all.php</string>
     <string name="reset_total_collected_money_PHP">http://192.168.0.100/DhareshwarPHP/reset_collected_money.php</string>
+    <string name="request_receipt_PHP">http://192.168.0.100/DhareshwarPHP/request_receipt.php</string>
 
     <string name="password_change">Change Password</string>
     <string name="password_change_dialog">For security reasons, please change your password.</string>
@@ -155,7 +156,7 @@
     <string name="total">Total:</string>
     <string name="collected_money">\u20B9 %1$s</string>
     <string name="reset">RESET</string>
-    <string name="are_you_sure_reset_collected_money">Are you sure that you have deposited all the collected money into the back accounts owned by the housing society?</string>
+    <string name="are_you_sure_reset_collected_money">Are you really sure?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="enter_password_to_proceed">Please enter your password to proceed.</string>
@@ -165,6 +166,8 @@
     <string name="receipt_not_given">Receipt not given</string>
     <string name="receipt_given_on">"Receipt given on: %1$s"</string>
     <string name="receipt_received_on">"Receipt received on: %1$s"</string>
+    <string name="request_receipt">Request receipt</string>
+    <string name="receipt_requested">Receipt\n requested</string>
 
 
 </resources>

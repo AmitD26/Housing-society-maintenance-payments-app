@@ -22,7 +22,7 @@ public class HomeTabLayoutAdapter extends FragmentPagerAdapter {
             case 0:
                 return UserDashboard.newInstance(null,null);
             case 1:
-                return UserPayments.newInstance(null,null,1);
+                return UserPayments.newInstance(null,null,UserPayments.SINGLE_USER);
             case 2:
                 return Notices.newInstance(null,null);
         }

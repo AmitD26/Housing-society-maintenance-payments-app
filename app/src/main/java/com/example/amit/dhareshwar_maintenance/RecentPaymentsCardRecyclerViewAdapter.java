@@ -2,6 +2,7 @@ package com.example.amit.dhareshwar_maintenance;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,10 @@ public class RecentPaymentsCardRecyclerViewAdapter extends RecyclerView.Adapter 
     Context context;
     JSONArray recentPaymentRecords;
     int noOfRecordsToDisplay;
+
+
+
+
 
     public RecentPaymentsCardRecyclerViewAdapter(Context context, JSONArray paymentsRecords, int noOfRecordsToDisplay) {
         this.recentPaymentRecords = new JSONArray();
@@ -68,10 +73,10 @@ public class RecentPaymentsCardRecyclerViewAdapter extends RecyclerView.Adapter 
             }
 
             if(payment.getString("payment_method").equals("Cash")) {
-                recentPaymentViewHolder.recent_payment_image_view.setImageDrawable(context.getDrawable(R.drawable.cash));
+                recentPaymentViewHolder.recent_payment_image_view.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.cash));
             }
             else if(payment.getString("payment_method").equals("Cheque")) {
-                recentPaymentViewHolder.recent_payment_image_view.setImageDrawable(context.getDrawable(R.drawable.cheque));
+                recentPaymentViewHolder.recent_payment_image_view.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.cheque));
             }
         } catch (JSONException e) {
             e.printStackTrace();

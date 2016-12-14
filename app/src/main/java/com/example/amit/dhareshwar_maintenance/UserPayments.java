@@ -31,6 +31,12 @@ public class UserPayments extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    public static String SINGLE_USER = "0";
+    public static String ALL_USERS = "1";
+    public static String TO_BE_CONFIRMED = "2";
+    public static String RECEIPTS_TO_BE_SENT = "3";
+    public static String REQUESTS_FOR_RECEIPTS = "4";
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -50,10 +56,10 @@ public class UserPayments extends Fragment {
      * @return A new instance of fragment UserPayments.
      */
     // TODO: Rename and change types and number of parameters
-    public static UserPayments newInstance(String param1, String param2, int single_or_all) {
+    public static UserPayments newInstance(String param1, String param2, String argument) {
         UserPayments fragment = new UserPayments();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, String.valueOf(single_or_all));
+        args.putString(ARG_PARAM1, argument);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -77,12 +83,21 @@ public class UserPayments extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         paymentsRecyclerView.setLayoutManager(llm);
         try {
-            JSONArray paymentRecords;
-            if (mParam1.equals("1")) {
+            JSONArray paymentRecords = null;
+            if (mParam1.equals(SINGLE_USER)) {
                 paymentRecords = new GetPaymentRecordsFromServer(getContext()).execute(getContext().getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS, Context.MODE_PRIVATE).getString("username", null)).get();
             }
-            else {
+            else if (mParam1.equals(ALL_USERS)) {
                 paymentRecords = new GetPaymentRecordsFromServer(getContext()).execute("all").get();
+            }
+            else if (mParam1.equals(TO_BE_CONFIRMED)) {
+                paymentRecords = new GetPaymentRecordsFromServer(getContext()).execute("to_be_confirmed").get();
+            }
+            else if (mParam1.equals(RECEIPTS_TO_BE_SENT)) {
+                paymentRecords = new GetPaymentRecordsFromServer(getContext()).execute("receipts_to_be_sent").get();
+            }
+            else if (mParam1.equals(REQUESTS_FOR_RECEIPTS)) {
+                paymentRecords = new GetPaymentRecordsFromServer(getContext()).execute("requests_for_receipts").get();
             }
             PaymentsRecyclerViewAdapter paymentsRecyclerViewAdapter = new PaymentsRecyclerViewAdapter(paymentRecords, getContext(), mParam1);
             paymentsRecyclerView.setAdapter(paymentsRecyclerViewAdapter);
