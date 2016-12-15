@@ -29,7 +29,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 public class UserProfileActivity extends AppCompatActivity
-        implements KeyEvent.Callback, NavigationView.OnNavigationItemSelectedListener, UserDashboard.OnFragmentInteractionListener, UserPayments.OnFragmentInteractionListener, Notices.OnFragmentInteractionListener, NoticeFragment.OnFragmentInteractionListener, Home.OnFragmentInteractionListener, At_a_glance.OnFragmentInteractionListener {
+        implements KeyEvent.Callback, NavigationView.OnNavigationItemSelectedListener, UserDashboard.OnFragmentInteractionListener, UserPayments.OnFragmentInteractionListener, Notices.OnFragmentInteractionListener, NoticeFragment.OnFragmentInteractionListener, Home.OnFragmentInteractionListener, At_a_glance.OnFragmentInteractionListener, MakeNotice.OnFragmentInteractionListener {
 
 
     @Override
@@ -162,6 +162,14 @@ public class UserProfileActivity extends AppCompatActivity
             layoutParams.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,50,getResources().getDisplayMetrics());
             container.setLayoutParams(layoutParams);
             getSupportFragmentManager().beginTransaction().replace(R.id.container, UserPayments.newInstance(null, null, UserPayments.REQUESTS_FOR_RECEIPTS)).addToBackStack(null).commit();
+        }
+        else if (id == R.id.send_notice) {
+            getSupportActionBar().setTitle("Send a notice.");
+            tabLayout.setVisibility(TabLayout.GONE);
+            CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) container.getLayoutParams();
+            layoutParams.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,50,getResources().getDisplayMetrics());
+            container.setLayoutParams(layoutParams);
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, MakeNotice.newInstance(null, null)).addToBackStack(null).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
