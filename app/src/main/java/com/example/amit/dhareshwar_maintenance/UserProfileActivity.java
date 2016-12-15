@@ -28,6 +28,11 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class UserProfileActivity extends AppCompatActivity
         implements KeyEvent.Callback, NavigationView.OnNavigationItemSelectedListener, UserDashboard.OnFragmentInteractionListener, UserPayments.OnFragmentInteractionListener, Notices.OnFragmentInteractionListener, NoticeFragment.OnFragmentInteractionListener, Home.OnFragmentInteractionListener, At_a_glance.OnFragmentInteractionListener, MakeNotice.OnFragmentInteractionListener {
 
@@ -130,6 +135,15 @@ public class UserProfileActivity extends AppCompatActivity
             layoutParams.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,50,getResources().getDisplayMetrics());
             container.setLayoutParams(layoutParams);
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new At_a_glance()).addToBackStack(null).commit();
+
+//            //======================================================================================
+//            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//            DateFormat dt = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
+//            try {
+//                Toast.makeText(this, dt.format(Calendar.getInstance().getTime()), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, dt.format(Calendar.getInstance().getTime()), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, Calendar.getInstance().getTime().toString(), Toast.LENGTH_LONG).show();
+//            //======================================================================================
         }
         else if (id == R.id.payments_to_be_confirmed) {
             getSupportActionBar().setTitle("To be confirmed.");

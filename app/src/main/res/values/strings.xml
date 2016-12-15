@@ -15,6 +15,7 @@
     <string name="all_residents_dues_info_PHP">http://192.168.0.100/DhareshwarPHP/dues_of_all.php</string>
     <string name="reset_total_collected_money_PHP">http://192.168.0.100/DhareshwarPHP/reset_collected_money.php</string>
     <string name="request_receipt_PHP">http://192.168.0.100/DhareshwarPHP/request_receipt.php</string>
+    <string name="send_notice_PHP">http://192.168.0.100/DhareshwarPHP/send_notice.php</string>
 
     <string name="password_change">Change Password</string>
     <string name="password_change_dialog">For security reasons, please change your password.</string>
