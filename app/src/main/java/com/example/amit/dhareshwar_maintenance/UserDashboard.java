@@ -80,7 +80,7 @@ public class UserDashboard extends Fragment {
         try {
             JSONObject resident_info = new GetResidentInfoFromServer(getContext()).execute().get();
             JSONObject dues_info = new GetDuesInfoFromServer(getContext()).execute().get();
-            JSONArray paymentRecords = new GetPaymentRecordsFromServer(getContext()).execute().get();
+            JSONArray paymentRecords = new GetPaymentRecordsFromServer(getContext()).execute(getContext().getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS, Context.MODE_PRIVATE).getString("username",null)).get();
 
             dashboardRecyclerView.setAdapter(new DashboardRecyclerViewAdapter(getContext(),resident_info,dues_info,paymentRecords,null));
         } catch (InterruptedException | ExecutionException e) {

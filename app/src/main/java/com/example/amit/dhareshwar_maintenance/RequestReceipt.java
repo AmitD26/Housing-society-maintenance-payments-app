@@ -3,7 +3,6 @@ package com.example.amit.dhareshwar_maintenance;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,29 +15,32 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 
 /**
- * Created by amit on 10/12/16.
+ * Created by amit on 7/12/16.
  */
 
-public class GetPaymentRecordsFromServer extends AsyncTask<String,String,JSONArray> {
+public class RequestReceipt extends AsyncTask<String,String,JSONObject> {
 
-    Context context;
+    private Context context;
 
-    public GetPaymentRecordsFromServer(Context context) {
+    public RequestReceipt() {
+        super();
+    }
+
+    public RequestReceipt(Context context) {
         this.context = context;
     }
 
     @Override
-    protected JSONArray doInBackground(String... strings) {
-        String username = strings[0];
-        String link = context.getString(R.string.user_payments_PHP);
-
+    protected JSONObject doInBackground(String... strings) {
         try {
-            URL url = new URL(link);
-            URLConnection conn = url.openConnection();
-            conn.setDoOutput(true);
+            String payment_id = strings[0];
 
+            URL url = new URL(context.getResources().getString(R.string.request_receipt_PHP));
+            URLConnection conn = url.openConnection();
+
+            conn.setDoOutput(true);
             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-            String data = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(username, "UTF-8");
+            String data = URLEncoder.encode("payment_id", "UTF-8") + "=" + URLEncoder.encode(payment_id, "UTF-8");
             wr.write(data);
             wr.flush();
 
@@ -48,11 +50,11 @@ public class GetPaymentRecordsFromServer extends AsyncTask<String,String,JSONArr
             while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
-
-            return new JSONArray(sb.toString());
+            return new JSONObject(sb.toString());
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
+
         return null;
     }
 }
