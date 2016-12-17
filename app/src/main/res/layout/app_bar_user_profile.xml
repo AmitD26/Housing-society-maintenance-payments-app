@@ -35,12 +35,45 @@
     <!--<include layout="@layout/content_user_profile"-->
         <!--android:id="@+id/include" />-->
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/fab_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:layout_gravity="end|bottom"
+        app:fab_labelsPosition="left"
+        app:fab_addButtonColorNormal="@color/colorAccent">
+
+        <com.getbase.floatingactionbutton.AddFloatingActionButton
+            android:id="@+id/fab_cash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_title="Cash"
+            app:fab_size="mini"
+            app:fab_colorNormal="@color/colorAccent"/>
+        <com.getbase.floatingactionbutton.AddFloatingActionButton
+            android:id="@+id/fab_cheque"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_size="mini"
+            app:fab_title="Cheque"
+            app:fab_colorNormal="@color/colorAccent"/>
+
+    <!--app:fab_addButtonColorNormal="@color/accent"-->
+        <!--app:fab_addButtonColorPressed="@color/accent_dark"-->
+        <!--app:fab_addButtonPlusIconColor="@color/white"-->
+        <!--app:fab_addButtonStrokeVisible="false"-->
+        <!--app:fab_labelStyle="@style/menu_labels_style"-->
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/fab"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|end"-->
+        <!--android:layout_margin="@dimen/fab_margin"-->
+        <!--app:srcCompat="@android:drawable/ic_dialog_email" />-->
+
+
 
 </android.support.design.widget.CoordinatorLayout>

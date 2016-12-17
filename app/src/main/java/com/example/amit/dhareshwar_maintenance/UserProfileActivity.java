@@ -28,6 +28,9 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.getbase.floatingactionbutton.AddFloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -46,11 +49,39 @@ public class UserProfileActivity extends AppCompatActivity
 
         setTitle("Flat no: " + getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS,MODE_PRIVATE).getString("username",null).substring(6));
 
-        FrameLayout container = (FrameLayout) findViewById(R.id.container);
+        final FrameLayout container = (FrameLayout) findViewById(R.id.container);
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) container.getLayoutParams();
         layoutParams.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,105,getResources().getDisplayMetrics());
         container.setLayoutParams(layoutParams);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, new Home()).commit();
+
+        FloatingActionsMenu fab_menu = (FloatingActionsMenu) findViewById(R.id.fab_menu);
+        fab_menu.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
+            @Override
+            public void onMenuExpanded() {
+                container.setAlpha(0.5f);
+            }
+
+            @Override
+            public void onMenuCollapsed() {
+                container.setAlpha(1);
+            }
+        });
+        
+        AddFloatingActionButton fab_cash = (AddFloatingActionButton) findViewById(R.id.fab_cash);
+        fab_cash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                new MakePayment().execute(getSharedPreferences(MainActivity.LOGIN_INFO_SHARED_PREFS, MODE_PRIVATE).getString("username", null), getString(R.string.pay_PHP), "Cash", "")
+            }
+        });
+        AddFloatingActionButton fab_cheque = (AddFloatingActionButton) findViewById(R.id.fab_cheque);
+        fab_cheque.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(UserProfileActivity.this, "Cheque", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 //        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 //        mViewPager = (ViewPager) findViewById(R.id.viewPager);
@@ -59,14 +90,15 @@ public class UserProfileActivity extends AppCompatActivity
 //        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 //        tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//
+//            }
+//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

@@ -50,7 +50,7 @@
         <menu>
             <item
                 android:icon="@drawable/ic_menu_send"
-                android:title="@string/send_feedback_to_developer" />
+                android:title="@string/send_feedback" />
         </menu>
     </item>
 

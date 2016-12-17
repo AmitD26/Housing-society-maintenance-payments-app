@@ -9,6 +9,7 @@
     <string name="user_payments_PHP">http://192.168.0.100/DhareshwarPHP/user_payments.php</string>
     <string name="resident_info_PHP">http://192.168.0.100/DhareshwarPHP/resident_info.php</string>
     <string name="notices_PHP">http://192.168.0.100/DhareshwarPHP/notices.php</string>
+    <string name="notice_main_body_PHP">http://192.168.0.100/DhareshwarPHP/notice_main_body.php</string>
     <string name="dues_PHP">http://192.168.0.100/DhareshwarPHP/dues.php</string>
     <string name="total_collected_money_PHP">http://192.168.0.100/DhareshwarPHP/total_money.php</string>
     <string name="all_residents_info_PHP">http://192.168.0.100/DhareshwarPHP/residents_info.php</string>
@@ -16,6 +17,7 @@
     <string name="reset_total_collected_money_PHP">http://192.168.0.100/DhareshwarPHP/reset_collected_money.php</string>
     <string name="request_receipt_PHP">http://192.168.0.100/DhareshwarPHP/request_receipt.php</string>
     <string name="send_notice_PHP">http://192.168.0.100/DhareshwarPHP/send_notice.php</string>
+    <string name="pay_PHP">http://192.168.0.100/DhareshwarPHP/pay.php</string>
 
     <string name="password_change">Change Password</string>
     <string name="password_change_dialog">For security reasons, please change your password.</string>
@@ -147,7 +149,7 @@
     <string name="communicate">Communicate</string>
     <string name="send_a_notice">Send a notice.</string>
     <string name="send_a_payment_reminder">Send a payment reminder.</string>
-    <string name="send_feedback_to_developer">Send feedback to developer.</string>
+    <string name="send_feedback">Send feedback.</string>
     <string name="any_issues">Any issues?</string>
     <string name="receipts_to_be_sent">Receipts to be sent.</string>
     <string name="details_of_all_notices">Details of all notices.</string>
@@ -171,6 +173,9 @@
     <string name="receipt_requested">Receipt\n requested</string>
     <string name="subject">Subject:</string>
     <string name="send">Send</string>
+    <string name="back">Back</string>
+    <string name="main_body">Main body:</string>
+    <string name="pay">PAY</string>
 
 
 </resources>
